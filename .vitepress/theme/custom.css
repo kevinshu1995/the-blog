@@ -66,10 +66,9 @@ h3 {
     font-size: 1rem !important;
     font-weight: 500 !important;
 }
-.local-search {
-    width: 100%;
+.VPNavBarSearch {
+    display: block;
     max-width: 300px;
-    margin-left: auto;
 }
 /* for aside start */
 .aside {
