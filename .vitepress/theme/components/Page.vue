@@ -5,9 +5,16 @@
                 <a :href="withBase(article.regularPath)"> {{ article.frontMatter.title }}</a>
             </div>
         </div>
-        <p class="describe" v-html="article.frontMatter.description"></p>
-        <div class='post-info'>
-            {{ article.frontMatter.date }} <span v-for="item in article.frontMatter.tags"><a :href="withBase(`/pages/tags.html?tag=${item}`)"> {{ item }}</a></span>
+        <p
+            class="describe"
+            v-if="article.frontMatter.description"
+            v-html="article.frontMatter.description"
+        ></p>
+        <div class="post-info">
+            {{ article.frontMatter.date }}
+            <span v-for="item in article.frontMatter.tags"
+                ><a :href="withBase(`/pages/tags.html?tag=${item}`)"> {{ item }}</a></span
+            >
         </div>
     </div>
 
@@ -18,37 +25,37 @@
             v-for="i in pagesNum"
             :key="i"
             :href="withBase(i === 1 ? '/index.html' : `/page_${i}.html`)"
-        >{{ i }}</a>
+            >{{ i }}</a
+        >
     </div>
 </template>
 
 <script lang="ts" setup>
-
-import { withBase } from 'vitepress'
-import { PropType } from 'vue'
+import { withBase } from 'vitepress';
+import { PropType } from 'vue';
 interface Article {
-    regularPath: string
+    regularPath: string;
     frontMatter: {
-        title: string
-        description: string
-        date: string
-        tags: string[]
-    }
+        title: string;
+        description: string;
+        date: string;
+        tags: string[];
+    };
 }
 defineProps({
     posts: {
         type: Array as PropType<Article[]>,
-        required: true
+        required: true,
     },
     pageCurrent: {
         type: Number as PropType<number>,
-        required: true
+        required: true,
     },
     pagesNum: {
         type: Number as PropType<number>,
-        required: true
-    }
-})
+        required: true,
+    },
+});
 </script>
 
 <style scoped>
@@ -64,11 +71,11 @@ defineProps({
 .post-title {
     font-size: 1.0625rem;
     font-weight: 500;
-    color: var(--bt-theme-title)!important;
+    color: var(--bt-theme-title) !important;
     margin: 0.1rem 0;
 }
-.post-title a{
-    color: var(--bt-theme-title)!important;
+.post-title a {
+    color: var(--bt-theme-title) !important;
 }
 
 .describe {
@@ -78,7 +85,7 @@ defineProps({
     -webkit-line-clamp: 3;
     overflow: hidden;
     color: var(--vp-c-text-2);
-    margin: 10px 0;
+    margin: 0 0 10px;
     line-height: 1.5rem;
 }
 .pagination {
