@@ -13,6 +13,7 @@ export default defineConfig({
     themeConfig: {
         posts: await getPosts(pageSize),
         website: 'https://blog.hsiu.soy', //copyright link
+        copyrightFrom: '2025',
         comment: {
             repo: 'kevinshu1995/the-blog',
             issueTerm: 'pathname',
