@@ -66,6 +66,11 @@ h3 {
     font-size: 1rem !important;
     font-weight: 500 !important;
 }
+.local-search {
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+}
 /* for aside start */
 .aside {
     position: fixed !important;

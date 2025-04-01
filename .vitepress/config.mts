@@ -19,17 +19,16 @@ export default defineConfig({
             issueTerm: 'pathname',
         },
         nav: [
-            { text: 'Home', link: '/' },
-            { text: 'Category', link: '/pages/category' },
-            { text: 'Archives', link: '/pages/archives' },
-            { text: 'Tags', link: '/pages/tags' },
-            { text: 'About', link: '/pages/about' },
+            // { text: 'Home', link: '/' },
+            { text: '分類', link: '/pages/category' },
+            { text: '列表', link: '/pages/archives' },
+            { text: '標籤', link: '/pages/tags' },
+            { text: '關於', link: '/pages/about' },
             // { text: 'Airene', link: 'http://airene.net' }  -- External link test
         ],
         search: {
             provider: 'local',
         },
-        //outline:[2,3],
         outline: {
             label: '文章摘要',
         },
