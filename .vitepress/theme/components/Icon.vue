@@ -1,7 +1,7 @@
 <template>
     <span
         :class="['inline-block icon', props.size ?? 'size-4', props.bg ?? 'dark:bg-white bg-black']"
-        :style="`--svg: url('https://api.iconify.design/simple-icons/${props.icon}.svg')`"
+        :style="`--svg: url('https://api.iconify.design/${props.icon}.svg')`"
     />
 </template>
 

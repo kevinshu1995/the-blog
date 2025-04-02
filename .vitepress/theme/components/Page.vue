@@ -9,7 +9,12 @@
     >
         <div class="post-header">
             <div class="post-title">
-                <Icon icon="pinboard" v-if="article.frontMatter.pin" size="size-3" class="mr-2" />
+                <Icon
+                    icon="simple-icons/pinboard"
+                    v-if="article.frontMatter.pin"
+                    size="size-3"
+                    class="mr-2"
+                />
 
                 <a class="!font-bold" :href="withBase(article.regularPath)">
                     {{ article.frontMatter.title }}
