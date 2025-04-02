@@ -5,6 +5,7 @@
     "main": "index.js",
     "devDependencies": {
         "@types/node": "^22.13.17",
+        "@unocss/preset-wind4": "66.1.0-beta.8",
         "fs-extra": "^11.3.0",
         "globby": "^14.1.0",
         "gray-matter": "^4.0.3",
