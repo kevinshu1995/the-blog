@@ -8,7 +8,7 @@
         ]"
     >
         <div class="post-header">
-            <div class="post-title">
+            <div class="post-title line-clamp-2">
                 <Icon
                     icon="simple-icons/pinboard"
                     v-if="article.frontMatter.pin"
@@ -22,14 +22,20 @@
             </div>
         </div>
         <p
-            class="describe"
+            class="describe line-clamp-2"
             v-if="article.frontMatter.description"
             v-html="article.frontMatter.description"
         ></p>
-        <div class="post-info">
-            {{ article.frontMatter.date }}
-            <span v-for="item in article.frontMatter.tags"
-                ><a :href="withBase(`/pages/tags.html?tag=${item}`)"> {{ item }}</a></span
+        <div class="post-info flex items-center flex-wrap mt-2 -mb-2">
+            <span
+                v-if="article.frontMatter.date"
+                class="inline-flex items-center mr-4 mb-2 w-full sm:w-auto"
+            >
+                <Icon icon="mynaui/calendar" size="size-3" class="mr-1" />
+                {{ article.frontMatter.date }}
+            </span>
+            <span v-for="item in article.frontMatter.tags" class="post-info-tag mb-2">
+                <a :href="withBase(`/pages/tags.html?tag=${item}`)"> {{ item }}</a></span
             >
         </div>
     </div>
@@ -99,12 +105,8 @@ defineProps({
 
 .describe {
     font-size: 0.9375rem;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
     color: var(--vp-c-text-2);
-    margin: 0 0 0.5rem;
+    margin: 0;
     line-height: 1.5rem;
 }
 .pagination {
@@ -139,19 +141,10 @@ defineProps({
     .post-title {
         font-size: 1.0625rem;
         font-weight: 400;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
-        width: 17rem;
     }
     .describe {
         font-size: 0.9375rem;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 3;
-        overflow: hidden;
-        margin: 0.5rem 0 1rem;
+        margin: 0;
     }
 }
 </style>

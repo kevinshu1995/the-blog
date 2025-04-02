@@ -186,7 +186,7 @@ h3 {
 .post-info {
     font-size: 12px;
 }
-.post-info span {
+.post-info .post-info-tag {
     display: inline-block;
     padding: 0 8px;
     background-color: var(--vp-c-bg-alt);
