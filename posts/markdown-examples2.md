@@ -4,6 +4,8 @@ date: 2024-01-02
 description: description
 tags:
     - description
+
+category: Bear
 ---
 
 # Markdown Extension Examples
