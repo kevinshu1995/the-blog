@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { getPosts } from './theme/serverUtils';
+import UnoCSS from 'unocss/vite';
 
 const pageSize = 10;
 
@@ -35,4 +36,7 @@ export default defineConfig({
         socialLinks: [{ icon: 'github', link: 'https://github.com/kevinshu1995' }],
     } as any,
     srcExclude: ['README.md'],
+    vite: {
+        plugins: [UnoCSS()],
+    },
 });
