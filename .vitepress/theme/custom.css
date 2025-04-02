@@ -66,6 +66,9 @@ h3 {
     font-size: 1rem !important;
     font-weight: 500 !important;
 }
+.VPNav .container {
+    max-width: 100% !important;
+}
 .VPNavBarSearch {
     display: block;
     max-width: 300px;
