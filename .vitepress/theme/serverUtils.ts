@@ -21,6 +21,7 @@ async function getPosts(pageSize: number) {
         }),
     );
     posts.sort(_compareDate as any);
+    posts.sort(_comparePin as any);
     return posts;
 }
 
@@ -62,6 +63,16 @@ function _compareDate(
     obj2: { frontMatter: { date: number } },
 ) {
     return obj1.frontMatter.date < obj2.frontMatter.date ? 1 : -1;
+}
+
+function _comparePin(
+    obj1: { frontMatter: { pin: number } },
+    obj2: { frontMatter: { pin: number } },
+) {
+    const pin1 = obj1.frontMatter?.pin ?? 0;
+    const pin2 = obj2.frontMatter?.pin ?? 0;
+    if (pin1 === pin2) return 0;
+    return pin1 < pin2 ? 1 : -1;
 }
 
 export { getPosts };

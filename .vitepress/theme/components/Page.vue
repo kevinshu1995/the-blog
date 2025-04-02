@@ -1,8 +1,19 @@
 <template>
-    <div v-for="(article, index) in posts" :key="index" class="post-list">
+    <div
+        v-for="(article, index) in posts"
+        :key="index"
+        :class="[
+            'post-list',
+            index !== 0 && 'border-t border-t-neutral-100 dark:border-t-neutral-800',
+        ]"
+    >
         <div class="post-header">
             <div class="post-title">
-                <a :href="withBase(article.regularPath)"> {{ article.frontMatter.title }}</a>
+                <Icon icon="pinboard" v-if="article.frontMatter.pin" size="size-3" class="mr-2" />
+
+                <a class="!font-bold" :href="withBase(article.regularPath)">
+                    {{ article.frontMatter.title }}
+                </a>
             </div>
         </div>
         <p
@@ -33,6 +44,8 @@
 <script lang="ts" setup>
 import { withBase } from 'vitepress';
 import { PropType } from 'vue';
+import Icon from './Icon.vue';
+
 interface Article {
     regularPath: string;
     frontMatter: {
@@ -40,6 +53,7 @@ interface Article {
         description: string;
         date: string;
         tags: string[];
+        pin?: number;
     };
 }
 defineProps({
@@ -85,7 +99,7 @@ defineProps({
     -webkit-line-clamp: 3;
     overflow: hidden;
     color: var(--vp-c-text-2);
-    margin: 0 0 10px;
+    margin: 0 0 0.5rem;
     line-height: 1.5rem;
 }
 .pagination {
