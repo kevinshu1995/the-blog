@@ -22,7 +22,6 @@ export default defineConfig({
         nav: [
             { text: '分類', link: '/pages/category' },
             { text: '列表', link: '/pages/archives' },
-            { text: '標籤', link: '/pages/tags' },
             { text: '關於', link: '/pages/about' },
         ],
         search: {

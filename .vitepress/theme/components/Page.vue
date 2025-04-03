@@ -1,5 +1,6 @@
 <template>
     <div class="flex flex-col md:flex-row gap-16">
+        <!-- Author aside -->
         <div class="md:min-w-[250px] flex flex-col items-center mt-[10vh]">
             <img
                 src="https://c.tenor.com/wfdSCMP3BVEAAAAC/tenor.gif"
@@ -7,11 +8,11 @@
                 class="size-26 rounded-full"
             />
             <p class="text-center !mb-0">{{ description }}</p>
-            <ul class="!p-0 !list-none text-sm">
-                <li class="flex gap-2">
+            <ul class="!p-0 !list-none text-sm flex gap-6">
+                <li class="flex gap-2 !m-0">
                     <span>文章</span><span>{{ posts.length }}</span>
                 </li>
-                <li class="flex gap-2">
+                <li class="flex gap-2 !m-0">
                     <span>標籤</span><span>{{ tagsLength }}</span>
                 </li>
             </ul>
@@ -32,20 +33,33 @@
                     </a>
                 </li>
             </ul>
-            <ul
-                class="!p-0 !list-none text-sm flex flex-wrap justify-center gap-2 !mt-4 border-t border-t-neutral-100 dark:border-t-neutral-800 !pt-4"
-            >
-                <li v-for="(_, value) in tags" class="!mt-0 !text-xs">
-                    <BaseTag
-                        :href="withBase(`/pages/tags.html?tag=${value}`)"
-                        :text="value"
-                        :key="value"
-                        font-size="text-3"
-                        margin="mr-1 mb-2"
-                    />
-                </li>
-            </ul>
+            <!-- tags -->
+            <div>
+                <ul
+                    class="!p-0 !list-none text-sm flex flex-wrap justify-center gap-2 !mt-4 border-t border-t-neutral-100 dark:border-t-neutral-800 !pt-4 !mb-1"
+                >
+                    <li v-for="(_, value) in tags" class="!mt-0 !text-xs">
+                        <BaseTag
+                            :href="withBase(`/pages/tags.html?tag=${value}`)"
+                            :text="value"
+                            :key="value"
+                            font-size="text-3"
+                            margin="mr-1 mb-2"
+                        />
+                    </li>
+                </ul>
+                <div class="flex justify-center">
+                    <a
+                        :href="withBase('/pages/tags.html')"
+                        class="flex items-center gap-1 text-3 py-1 pl-2 pr-1 rounded-sm"
+                    >
+                        <span>查看更多</span>
+                        <BaseIcon icon="mynaui/chevron-right" />
+                    </a>
+                </div>
+            </div>
         </div>
+        <!-- Post List -->
         <div class="grow">
             <div
                 v-for="(article, index) in posts"
