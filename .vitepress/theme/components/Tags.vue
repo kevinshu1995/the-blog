@@ -7,7 +7,6 @@
                 :text="key"
                 :key="key"
                 :sup="data[key].length"
-                padding="px-4"
                 font-size="text-3 md:text-4"
                 :class="[selectTag === key && '!bg-[var(--vp-c-bg)] font-bold pointer-events-none']"
             />
