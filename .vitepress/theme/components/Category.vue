@@ -7,7 +7,7 @@
             :href="withBase(article.regularPath)"
             v-for="(article, index) in posts"
             :key="index"
-            class="py-1 pt-1 md:pt-1 pb-1 md:pb-[25px] flex justify-between items-center"
+            class="pb-1 mb-1 md:pb-2 md:mb-2 flex justify-between items-center text-[var(--vp-c-text-1)] hover:text-[var(--vp-c-brand)] border-b border-b-[var(--vp-c-gray-soft)] hover:underline"
         >
             <div class="text-[var(--vp-c-text-1)] hover:text-[var(--vp-c-brand)] line-clamp-1">
                 <div

@@ -38,7 +38,7 @@
                     >
                         <a
                             :href="post.regularPath"
-                            class="flex flex-col md:flex-row justify-between w-full hover:text-[var(--vp-c-brand)]"
+                            class="flex flex-col md:flex-row justify-between w-full hover:text-[var(--vp-c-brand)] hover:underline"
                         >
                             <span class="line-clamp-2 md:line-clamp-1">
                                 {{ post.frontMatter.title }}

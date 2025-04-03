@@ -94,7 +94,7 @@
                 v-for="(article, index) in posts"
                 :key="index"
                 :class="[
-                    'py-[14px]',
+                    'py-7',
                     index !== 0 && 'border-t border-t-neutral-100 dark:border-t-neutral-800',
                 ]"
             >
@@ -120,7 +120,7 @@
                             />
                         </div>
                         <a
-                            class="!text-[var(--bt-theme-title)] !font-bold"
+                            class="!text-[var(--bt-theme-title)] !font-bold hover:underline"
                             :href="withBase(article.regularPath)"
                         >
                             {{ article.frontMatter.title }}
@@ -146,14 +146,15 @@
                             size="size-4"
                             class="translate-y-px"
                         />
-                        <a
+                        <BaseTag
                             v-for="item in article.frontMatter.tags"
                             :href="withBase(`/pages/tags.html?tag=${item}`)"
                             :key="item"
-                            class="text-3 mr-2.5 inline-block"
-                        >
-                            #{{ item }}
-                        </a>
+                            :text="item"
+                            margin="mr-2.5"
+                            font-size="text-3"
+                            class="inline-block"
+                        />
                     </template>
                 </div>
             </div>

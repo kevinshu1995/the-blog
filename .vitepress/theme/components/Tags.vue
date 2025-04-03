@@ -17,7 +17,7 @@
         :href="withBase(article.regularPath)"
         v-for="(article, index) in selectTag ? data[selectTag] : []"
         :key="index"
-        class="pb-1 mb-1 md:pb-2 md:mb-2 flex justify-between items-center text-[var(--vp-c-text-1)] hover:text-[var(--vp-c-brand)] border-b border-b-[var(--vp-c-gray-soft)]"
+        class="pb-1 mb-1 md:pb-2 md:mb-2 flex justify-between items-center text-[var(--vp-c-text-1)] hover:text-[var(--vp-c-brand)] border-b border-b-[var(--vp-c-gray-soft)] hover:underline"
     >
         <span class="block line-clamp-1">
             <span

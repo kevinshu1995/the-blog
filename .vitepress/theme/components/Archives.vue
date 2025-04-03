@@ -7,7 +7,7 @@
             :href="withBase(article.regularPath)"
             v-for="(article, index) in yearList"
             :key="index"
-            class="py-1 pt-1 md:pt-1 pb-1 md:pb-[25px] flex justify-between items-center"
+            class="py-1 pt-1 md:pt-1 pb-1 md:pb-[25px] flex justify-between items-center hover:underline"
         >
             <div class="text-[var(--vp-c-text-1)] hover:text-[var(--vp-c-brand)] line-clamp-1">
                 <div
