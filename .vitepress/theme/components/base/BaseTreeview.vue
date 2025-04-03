@@ -23,7 +23,7 @@
         >
             <BaseIcon
                 v-if="model.rel === 'pinned'"
-                icon="simple-icons/pinboard"
+                icon="mynaui/pin"
                 size="size-3"
                 class="!text-[var(--bt-theme-title)] mt-1.5"
             />

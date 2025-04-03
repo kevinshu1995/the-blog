@@ -43,6 +43,7 @@ export default defineConfig({
             tags: '標籤',
             readMore: '查看更多',
             uncategorized: '未分類',
+            category: '分類',
         },
         copyrightFrom: '2025',
     } as any,

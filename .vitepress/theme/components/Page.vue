@@ -9,12 +9,15 @@
                     class="size-26 rounded-full"
                 />
                 <p class="text-center !mb-0">{{ description }}</p>
-                <ul class="!p-0 !list-none text-sm flex gap-6">
-                    <li class="flex gap-2 !m-0">
-                        <span>{{ theme.text.archive }}</span
-                        ><span>{{ posts.length }}</span>
+                <ul class="!p-0 !list-none text-sm flex gap-2 items-center line-height-4">
+                    <li class="flex items-center gap-2 !m-0">
+                        <span>{{ theme.text.archive }}</span>
+                        <span>{{ posts.length }}</span>
                     </li>
-                    <li class="flex gap-2 !m-0">
+                    <li class="flex items-center !m-0 translate-y-px">
+                        <BaseIcon icon="mynaui/dots-vertical" size="size-4" />
+                    </li>
+                    <li class="flex items-center gap-2 !m-0">
                         <span>{{ theme.text.tags }}</span
                         ><span>{{ tagsLength }}</span>
                     </li>
@@ -37,10 +40,21 @@
                     </li>
                 </ul>
                 <!-- tags -->
-                <div>
-                    <ul
-                        class="!p-0 !list-none text-sm flex flex-wrap justify-center gap-2 !mt-4 border-t border-t-neutral-100 dark:border-t-neutral-800 !pt-4 !mb-1"
-                    >
+                <div class="!mt-4 border-t border-t-neutral-100 dark:border-t-neutral-800 !pt-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-3 flex items-center gap-1">
+                            <BaseIcon icon="mynaui/tag" size="size-3" />
+                            <span>{{ theme.text.tags }}</span>
+                        </span>
+                        <a
+                            :href="withBase('/pages/tags.html')"
+                            class="flex items-center gap-1 text-3 py-1 pl-2 pr-1 rounded-sm"
+                        >
+                            <span>{{ theme.text.readMore }}</span>
+                            <BaseIcon icon="mynaui/chevron-right" />
+                        </a>
+                    </div>
+                    <ul class="!p-0 !list-none text-sm flex flex-wrap gap-2 !mb-1">
                         <li v-for="(_, value) in tags" class="!mt-0 !text-xs">
                             <BaseTag
                                 :href="withBase(`/pages/tags.html?tag=${value}`)"
@@ -51,19 +65,27 @@
                             />
                         </li>
                     </ul>
-                    <div class="flex justify-center">
+                </div>
+                <div
+                    class="!mt-4 border-t border-t-neutral-100 dark:border-t-neutral-800 !pt-4 w-full"
+                >
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-3 flex items-center gap-1">
+                            <BaseIcon icon="mynaui/layers-three" size="size-3" />
+                            <span>{{ theme.text.category }}</span>
+                        </span>
                         <a
-                            :href="withBase('/pages/tags.html')"
+                            :href="withBase('/pages/category.html')"
                             class="flex items-center gap-1 text-3 py-1 pl-2 pr-1 rounded-sm"
                         >
                             <span>{{ theme.text.readMore }}</span>
                             <BaseIcon icon="mynaui/chevron-right" />
                         </a>
                     </div>
+                    <ul class="!p-0 !m-0 !list-none">
+                        <BaseTreeview v-for="groupItem in normalizeCategories" :model="groupItem" />
+                    </ul>
                 </div>
-                <ul class="!p-0 !m-0 !list-none w-full">
-                    <BaseTreeview v-for="groupItem in normalizeCategories" :model="groupItem" />
-                </ul>
             </div>
         </BaseSidebar>
         <!-- Post List -->
@@ -79,7 +101,7 @@
                 <div class="flex items-center justify-between">
                     <div class="text-base line-clamp-2">
                         <BaseIcon
-                            icon="simple-icons/pinboard"
+                            icon="mynaui/pin"
                             v-if="article.frontMatter.pin"
                             size="size-3"
                             class="mr-2 !text-[var(--bt-theme-title)]"
