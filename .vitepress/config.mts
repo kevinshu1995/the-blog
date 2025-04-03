@@ -29,11 +29,14 @@ export default defineConfig({
         socialLinks: [{ icon: 'github', link: 'https://github.com/kevinshu1995' }],
         darkModeSwitchLabel: '切換模式',
 
+        suggestPostLength: 5,
+
         // customize text
         author: {
             intro: '',
         },
         text: {
+            suggestPost: '更多文章',
             archive: '文章',
             tags: '標籤',
             readMore: '查看更多',
