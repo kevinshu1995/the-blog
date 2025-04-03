@@ -1,6 +1,7 @@
 <template>
     <component
         :is="href ? 'a' : 'button'"
+        :href="href"
         :class="[
             'inline-block duration-400 rounded-0.5 cursor-pointer',
             'bg-[var(--vp-c-bg-alt)] text-[var(--vp-c-text-1)] hover:text-[var(--vp-c-brand)]',
