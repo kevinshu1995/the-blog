@@ -59,6 +59,9 @@
                         </a>
                     </div>
                 </div>
+                <ul class="!p-0 !m-0 !list-none w-full">
+                    <BaseTreeview v-for="groupItem in normalizeCategories" :model="groupItem" />
+                </ul>
             </div>
         </BaseSidebar>
         <!-- Post List -->
@@ -112,7 +115,7 @@
                     />
                 </div>
             </div>
-            <div class="mt-4 flex justify-center">
+            <div class="mt-4 flex justify-center gap-2">
                 <a
                     :class="[
                         'link inline-block size-6 text-center rounded-full',
@@ -134,10 +137,13 @@
 
 <script lang="ts" setup>
 import { withBase, useData } from 'vitepress';
-import { PropType, computed } from 'vue';
-import { initTags } from '../functions';
+import { PropType, computed, ref, watch } from 'vue';
+import { initTags, initCategory } from '../functions';
 import BaseSidebar from './base/BaseSidebar.vue';
+import BaseTreeview from './base/BaseTreeview.vue';
 import Copyright from './Copyright.vue';
+import { useSidebar } from 'vitepress/theme';
+import type { DefaultTheme } from 'vitepress/theme';
 
 interface Article {
     regularPath: string;
@@ -167,4 +173,60 @@ defineProps({
 const { theme, description } = useData();
 const tags = computed(() => initTags(theme.value.posts));
 const tagsLength = computed(() => Object.keys(tags.value).length);
+const categories = computed(() => initCategory(theme.value.posts));
+
+const normalizeCategories = computed(() => {
+    const _categories = categories.value;
+    const result: DefaultTheme.SidebarItem[] = [];
+
+    // 遍歷所有分類
+    for (const [categoryName, articles] of Object.entries(_categories)) {
+        // 為每個分類創建一個側邊欄項目
+        const categoryItem: DefaultTheme.SidebarItem = {
+            text: categoryName,
+            collapsed: false,
+            items: [],
+        };
+
+        // 將分類下的每篇文章加入為子項目
+        if (Array.isArray(articles)) {
+            articles.forEach((article) => {
+                categoryItem.items?.push({
+                    text: article.frontMatter.title,
+                    link: withBase(article.regularPath),
+                    // 如果文章有 pin 屬性，可以添加到 rel 屬性中
+                    rel: article.frontMatter.pin ? 'pinned' : undefined,
+                    // 可以添加更多屬性如文章描述等
+                    docFooterText: article.frontMatter.date,
+                });
+            });
+
+            // 按照 pin 屬性和日期排序文章（置頂的在前面）
+            categoryItem.items?.sort((a, b) => {
+                const aIsPinned = a.rel === 'pinned';
+                const bIsPinned = b.rel === 'pinned';
+
+                if (aIsPinned && !bIsPinned) return -1;
+                if (!aIsPinned && bIsPinned) return 1;
+
+                // 如果同為置頂或非置頂，則按日期排序（新的在前面）
+                const aDate = a.docFooterText || '';
+                const bDate = b.docFooterText || '';
+                return bDate.localeCompare(aDate);
+            });
+        }
+
+        // 只有當分類下有文章時才添加到結果中
+        if (categoryItem.items && categoryItem.items.length > 0) {
+            result.push(categoryItem);
+        }
+    }
+
+    // 按照分類名稱排序
+    result.sort((a, b) => {
+        return (a.text || '').localeCompare(b.text || '');
+    });
+
+    return result;
+});
 </script>
