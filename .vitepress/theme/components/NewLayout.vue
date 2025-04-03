@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <template #doc-before>
-            <div>
+            <div v-if="isHomePage === false">
                 <div class="text-3 pt-5 flex gap-2 items-end mb-2">
                     <p v-if="!frontmatter.page" class="text-3">
                         {{ frontmatter.date?.substring(0, 10) }}
@@ -23,7 +23,10 @@
             </div>
         </template>
         <template #doc-after>
-            <div class="py-20 my-20 border-t border-t-neutral-200 dark:border-t-neutral-800">
+            <div
+                class="py-20 my-20 border-t border-t-neutral-200 dark:border-t-neutral-800"
+                v-if="isHomePage === false"
+            >
                 <h2 class="!mb-4 !font-bold !mt-0">{{ theme.text.suggestPost }}</h2>
                 <ul class="">
                     <li

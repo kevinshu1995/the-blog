@@ -17,7 +17,7 @@
 <script setup lang="ts">
 defineProps<{
     text: string;
-    sup?: string;
+    sup?: number | string;
     fontSize?: string;
     href?: string;
     padding?: string;

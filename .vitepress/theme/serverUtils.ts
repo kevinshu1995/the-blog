@@ -3,8 +3,10 @@ import matter from 'gray-matter';
 import fs from 'fs-extra';
 import { resolve } from 'path';
 
+import GLOBAL_CONFIG from './../global-config';
+
 async function getPosts(pageSize: number) {
-    let paths = await globby(['posts/**.md']);
+    let paths = await globby([GLOBAL_CONFIG.srcDirName + '/posts/**.md']);
 
     //生成分页页面markdown
     await generatePaginationPages(paths.length, pageSize);
@@ -16,7 +18,9 @@ async function getPosts(pageSize: number) {
             data.date = _convertDate(data.date);
             return {
                 frontMatter: data,
-                regularPath: `/${item.replace('.md', '.html')}`,
+                regularPath: `/${item
+                    .replace('.md', '.html')
+                    .replace(`${GLOBAL_CONFIG.srcDirName}/`, '')}`,
             };
         }),
     );
@@ -28,7 +32,7 @@ async function getPosts(pageSize: number) {
 async function generatePaginationPages(total: number, pageSize: number) {
     //  pagesNum
     let pagesNum = total % pageSize === 0 ? total / pageSize : Math.floor(total / pageSize) + 1;
-    const paths = resolve('./');
+    const paths = resolve('./articles');
     if (total > 0) {
         for (let i = 1; i < pagesNum + 1; i++) {
             const page = `
@@ -38,7 +42,7 @@ title: ${i === 1 ? 'home' : 'page_' + i}
 aside: false
 ---
 <script setup>
-import Page from "./.vitepress/theme/components/Page.vue";
+import Page from "./../.vitepress/theme/components/Page.vue";
 import { useData } from "vitepress";
 const { theme } = useData();
 const posts = theme.value.posts.slice(${pageSize * (i - 1)},${pageSize * i})
@@ -49,6 +53,7 @@ const posts = theme.value.posts.slice(${pageSize * (i - 1)},${pageSize * i})
             await fs.writeFile(file, page);
         }
     }
+    console.log('hello', paths);
     // rename page_1 to index for homepage
     await fs.move(paths + '/page_1.md', paths + '/index.md', { overwrite: true });
 }

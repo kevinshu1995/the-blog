@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { getPosts } from './theme/serverUtils';
+import GLOBAL_CONFIG from './global-config';
 import UnoCSS from 'unocss/vite';
 
 const pageSize = 10;
@@ -11,6 +12,7 @@ export default defineConfig({
     base: '/',
     cacheDir: './node_modules/vitepress_cache',
     ignoreDeadLinks: true,
+    srcDir: `./${GLOBAL_CONFIG.srcDirName}`,
     themeConfig: {
         posts: await getPosts(pageSize),
         website: 'https://blog.hsiu.soy', //copyright link
