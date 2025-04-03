@@ -20,5 +20,8 @@
         "preview": "vitepress preview"
     },
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "@vueuse/core": "^13.0.0"
+    }
 }

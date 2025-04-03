@@ -13,11 +13,18 @@
             </div>
         </template>
     </Layout>
-    <Copyright />
+    <Copyright v-if="isHomePage === false" />
 </template>
 <script setup>
+import { computed } from 'vue';
 import DefaultTheme from 'vitepress/theme';
 import Copyright from './Copyright.vue';
-import { withBase } from 'vitepress';
+import { withBase, useRoute } from 'vitepress';
 const { Layout } = DefaultTheme;
+const route = useRoute();
+
+const isHomePage = computed(() => {
+    if (/^\/(page_\d+(?:\.html)?)?$/.test(route.path)) return true;
+    return route.path === '/';
+});
 </script>
