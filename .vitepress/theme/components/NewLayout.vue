@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <template #doc-before>
-            <div v-if="isHomePage === false">
+            <div v-if="!frontmatter.page">
                 <div class="text-3 pt-5 flex gap-2 items-end mb-2">
                     <p v-if="!frontmatter.page" class="text-3">
                         {{ frontmatter.date?.substring(0, 10) }}
@@ -25,7 +25,7 @@
         <template #doc-after>
             <div
                 class="py-20 my-20 border-t border-t-neutral-200 dark:border-t-neutral-800"
-                v-if="isHomePage === false"
+                v-if="!frontmatter.page"
             >
                 <h2 class="!mb-4 !font-bold !mt-0">{{ theme.text.suggestPost }}</h2>
                 <ul class="">
@@ -51,7 +51,7 @@
             </div>
         </template>
     </Layout>
-    <Copyright v-if="isHomePage === false" />
+    <Copyright v-if="!frontmatter.page" />
 </template>
 <script setup lang="ts">
 import { data as readingTimeData } from './../utils/reading-time.data.ts';
@@ -98,10 +98,5 @@ const currentPageReadingTime = computed(() => {
         readingTimeData.articles.find((article) => article.path === route.path)?.readingTime
             ?.labelText || ''
     );
-});
-
-const isHomePage = computed(() => {
-    if (/^\/(page_\d+(?:\.html)?)?$/.test(route.path)) return true;
-    return route.path === '/';
 });
 </script>
