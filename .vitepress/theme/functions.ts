@@ -5,6 +5,7 @@ type Post = {
         category: string;
         tags: string[];
         description: string;
+        pin?: number;
     };
     regularPath: string;
 };
