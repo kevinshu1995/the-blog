@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
+    "type": "module",
     "devDependencies": {
         "@types/node": "^22.13.17",
         "@unocss/preset-wind4": "66.1.0-beta.8",

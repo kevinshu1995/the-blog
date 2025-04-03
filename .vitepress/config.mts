@@ -1,8 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { getPosts } from './theme/serverUtils';
 import UnoCSS from 'unocss/vite';
-import { arch } from 'os';
-import { read } from 'fs';
 
 const pageSize = 10;
 
