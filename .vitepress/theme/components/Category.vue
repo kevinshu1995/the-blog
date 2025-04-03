@@ -25,5 +25,5 @@ import { computed } from 'vue';
 import { initCategory } from '../functions';
 
 const { theme } = useData();
-const data = computed(() => initCategory(theme.value.posts));
+const data = computed(() => initCategory(theme.value.posts, theme.value.text.uncategorized));
 </script>

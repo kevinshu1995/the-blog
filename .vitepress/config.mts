@@ -1,6 +1,8 @@
 import { defineConfig } from 'vitepress';
 import { getPosts } from './theme/serverUtils';
 import UnoCSS from 'unocss/vite';
+import { arch } from 'os';
+import { read } from 'fs';
 
 const pageSize = 10;
 
@@ -14,16 +16,12 @@ export default defineConfig({
     themeConfig: {
         posts: await getPosts(pageSize),
         website: 'https://blog.hsiu.soy', //copyright link
-        copyrightFrom: '2025',
+        // logo: ''
         comment: {
             repo: 'kevinshu1995/the-blog',
             issueTerm: 'pathname',
         },
-        nav: [
-            { text: '分類', link: '/pages/category' },
-            { text: '列表', link: '/pages/archives' },
-            { text: '關於', link: '/pages/about' },
-        ],
+        nav: [{ text: '關於', link: '/pages/about' }],
         search: {
             provider: 'local',
         },
@@ -31,6 +29,19 @@ export default defineConfig({
             label: '文章摘要',
         },
         socialLinks: [{ icon: 'github', link: 'https://github.com/kevinshu1995' }],
+        darkModeSwitchLabel: '切換模式',
+
+        // customize text
+        author: {
+            intro: '',
+        },
+        text: {
+            archive: '文章',
+            tags: '標籤',
+            readMore: '查看更多',
+            uncategorized: '未分類',
+        },
+        copyrightFrom: '2025',
     } as any,
     srcExclude: ['README.md'],
     vite: {

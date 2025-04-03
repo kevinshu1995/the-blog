@@ -11,10 +11,12 @@
                 <p class="text-center !mb-0">{{ description }}</p>
                 <ul class="!p-0 !list-none text-sm flex gap-6">
                     <li class="flex gap-2 !m-0">
-                        <span>文章</span><span>{{ posts.length }}</span>
+                        <span>{{ theme.text.archive }}</span
+                        ><span>{{ posts.length }}</span>
                     </li>
                     <li class="flex gap-2 !m-0">
-                        <span>標籤</span><span>{{ tagsLength }}</span>
+                        <span>{{ theme.text.tags }}</span
+                        ><span>{{ tagsLength }}</span>
                     </li>
                 </ul>
                 <ul class="!p-0 !list-none text-sm flex flex-wrap gap-2 !mt-2 !mb-0">
@@ -54,7 +56,7 @@
                             :href="withBase('/pages/tags.html')"
                             class="flex items-center gap-1 text-3 py-1 pl-2 pr-1 rounded-sm"
                         >
-                            <span>查看更多</span>
+                            <span>{{ theme.text.readMore }}</span>
                             <BaseIcon icon="mynaui/chevron-right" />
                         </a>
                     </div>
@@ -142,7 +144,6 @@ import { initTags, initCategory } from '../functions';
 import BaseSidebar from './base/BaseSidebar.vue';
 import BaseTreeview from './base/BaseTreeview.vue';
 import Copyright from './Copyright.vue';
-import { useSidebar } from 'vitepress/theme';
 import type { DefaultTheme } from 'vitepress/theme';
 
 interface Article {
@@ -173,7 +174,7 @@ defineProps({
 const { theme, description } = useData();
 const tags = computed(() => initTags(theme.value.posts));
 const tagsLength = computed(() => Object.keys(tags.value).length);
-const categories = computed(() => initCategory(theme.value.posts));
+const categories = computed(() => initCategory(theme.value.posts, theme.value.text.uncategorized));
 
 const normalizeCategories = computed(() => {
     const _categories = categories.value;
@@ -223,8 +224,16 @@ const normalizeCategories = computed(() => {
     }
 
     // 按照分類名稱排序
+    const uncategorizedLabel = theme.value.text.uncategorized;
     result.sort((a, b) => {
-        return (a.text || '').localeCompare(b.text || '');
+        const aText = a.text || '';
+        const bText = b.text || '';
+        // 如果 a 是未分類，應該排在後面
+        if (aText === uncategorizedLabel) return 1;
+        // 如果 b 是未分類，應該排在後面
+        if (bText === uncategorizedLabel) return -1;
+        // 其他情況按正常字母順序
+        return aText.localeCompare(bText);
     });
 
     return result;

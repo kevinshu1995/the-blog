@@ -24,11 +24,11 @@ export function initTags(posts: Post[]): Record<string, Post[]> {
     );
 }
 
-export function initCategory(posts: Post[]) {
+export function initCategory(posts: Post[], uncategorizedLabel?: string) {
     const data: Record<string, Post[]> = {};
     for (let index = 0; index < posts.length; index++) {
         const element = posts[index];
-        const category = element.frontMatter.category ?? '未分類';
+        const category = element.frontMatter.category ?? uncategorizedLabel ?? 'uncategorized';
         if (category) {
             if (data[category]) {
                 data[category].push(element);
