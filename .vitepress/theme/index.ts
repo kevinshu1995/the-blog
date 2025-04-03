@@ -9,6 +9,9 @@ import Tags from './components/Tags.vue';
 import Page from './components/Page.vue';
 import Comment from './components/Comment.vue';
 
+import BaseTag from './components/base/BaseTag.vue';
+import BaseIcon from './components/base/BaseIcon.vue';
+
 import './custom.css';
 import 'virtual:uno.css';
 
@@ -16,6 +19,8 @@ export default {
     ...DefaultTheme,
     Layout: NewLayout,
     enhanceApp({ app, router, siteData }) {
+        app.component('BaseIcon', BaseIcon);
+        app.component('BaseTag', BaseTag);
         // ...
         app.component('Tags', Tags);
         app.component('Category', Category);

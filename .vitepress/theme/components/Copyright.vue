@@ -1,7 +1,7 @@
 <template>
-    <div class="site-footer">
+    <div class="text-center text-3 py-4">
         MIT Licensed | Copyright © {{ copyrightFrom }}-present
-        <a class="vitepress" :href="website">{{ webTitle }}</a>
+        <a class="font-bold text-[var(--vp-c-text-1)]" :href="website">{{ webTitle }}</a>
     </div>
 </template>
 <script lang="ts" setup>
@@ -12,18 +12,3 @@ const website = theme.value.website;
 const webTitle = site.value.title;
 const copyrightFrom = theme.value.copyrightFrom;
 </script>
-
-<style>
-.site-footer {
-    color: #888;
-    text-align: center;
-    font-size: 0.75rem;
-    width: 100%;
-    padding: 15px 0;
-    overflow: auto;
-}
-.vitepress {
-    color: var(--vp-c-text-1);
-    font-weight: 700;
-}
-</style>

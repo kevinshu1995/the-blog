@@ -1,21 +1,32 @@
 <template>
-    <div class="tags">
-        <span @click="toggleTag(String(key))" v-for="(_, key) in data" class="tag">
-            {{ key }} <sup>{{ data[key].length }}</sup>
-        </span>
+    <div class="mt-4 -mx-2">
+        <div class="flex flex-wrap">
+            <BaseTag
+                v-for="(_, key) in data"
+                @click="toggleTag(String(key))"
+                :text="key"
+                :key="key"
+                :sup="data[key].length"
+                padding="px-4"
+                font-size="text-3 md:text-4"
+                :class="[selectTag === key && '!bg-[var(--vp-c-bg)] font-bold pointer-events-none']"
+            />
+        </div>
     </div>
-    <div class="tag-header">{{ selectTag }}</div>
+    <div class="pt-7 pb-2.5 text-lg text-[var(--bt-theme-title)] font-bold">{{ selectTag }}</div>
     <a
         :href="withBase(article.regularPath)"
         v-for="(article, index) in selectTag ? data[selectTag] : []"
         :key="index"
-        class="posts"
+        class="pb-1 mb-1 md:pb-2 md:mb-2 flex justify-between items-center text-[var(--vp-c-text-1)] hover:text-[var(--vp-c-brand)] border-b border-b-[var(--vp-c-gray-soft)]"
     >
-        <div class="post-container">
-            <div class="post-dot"></div>
+        <span class="block line-clamp-1">
+            <span
+                class="inline-block mr-1 md:mr-2.5 mb-1 size-1 rounded-full bg-[var(--li-dot-color)]"
+            ></span>
             {{ article.frontMatter.title }}
-        </div>
-        <div class="date">{{ article.frontMatter.date }}</div>
+        </span>
+        <span class="!text-3 !md:text-base text-nowrap">{{ article.frontMatter.date }}</span>
     </a>
 </template>
 <script lang="ts" setup>
@@ -37,43 +48,3 @@ if (defaultDisplayTag) {
     toggleTag(defaultDisplayTag);
 }
 </script>
-
-<style scoped>
-.tags {
-    margin-top: 14px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.tag {
-    display: inline-block;
-    padding: 0 16px 4px 16px;
-    margin: 6px 8px;
-    font-size: 0.875rem;
-    line-height: 25px;
-    background-color: var(--vp-c-bg-alt);
-    transition: 0.4s;
-    border-radius: 2px;
-    color: var(--vp-c-text-1);
-    cursor: pointer;
-}
-
-.tag sup {
-    color: var(--vp-c-brand);
-    font-weight: bold;
-}
-
-.tag-header {
-    padding: 28px 0 10px 0;
-    font-size: 1.375rem;
-    font-weight: 600;
-    color: var(--bt-theme-title);
-    font-family: var(--date-font-family);
-}
-
-@media screen and (max-width: 768px) {
-    .date {
-        font-size: 0.75rem;
-    }
-}
-</style>
