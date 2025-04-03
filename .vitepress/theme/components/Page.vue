@@ -98,15 +98,27 @@
                     index !== 0 && 'border-t border-t-neutral-100 dark:border-t-neutral-800',
                 ]"
             >
-                <div class="flex items-center justify-between">
-                    <div class="text-base line-clamp-2">
-                        <BaseIcon
-                            icon="mynaui/pin"
-                            v-if="article.frontMatter.pin"
-                            size="size-3"
-                            class="mr-2 !text-[var(--bt-theme-title)]"
-                        />
+                <div class="flex items-center text-3 gap-1 mb-0.5">
+                    <span v-if="article.frontMatter.date" class="inline-flex items-center">
+                        <BaseIcon icon="mynaui/calendar" size="size-3" class="mr-1" />
+                        {{ article.frontMatter.date }}
+                    </span>
 
+                    <BaseIcon icon="mynaui/dots-vertical" size="size-4" class="translate-y-px" />
+                    <span class="inline-flex items-center">
+                        {{ getReadingTime(article.regularPath) }}
+                    </span>
+                </div>
+                <div class="flex items-center justify-between relative">
+                    <div class="text-5 line-clamp-2">
+                        <div class="absolute top-0 left-0 translate-x-[-100%] pr-2">
+                            <BaseIcon
+                                icon="mynaui/pin"
+                                v-if="article.frontMatter.pin"
+                                size="size-3"
+                                class="!text-[var(--bt-theme-title)]"
+                            />
+                        </div>
                         <a
                             class="!text-[var(--bt-theme-title)] !font-bold"
                             :href="withBase(article.regularPath)"
@@ -116,27 +128,33 @@
                     </div>
                 </div>
                 <p
-                    class="text-[var(--vp-c-text-2)] !m-0 !text-sm line-clamp-2"
+                    class="text-[var(--vp-c-text-2)] !m-0 !text-sm line-clamp-2 py-1"
                     v-if="article.frontMatter.description"
                     v-html="article.frontMatter.description"
                 ></p>
-                <div class="text-3 flex items-center flex-wrap mt-2 -mb-2">
-                    <span
-                        v-if="article.frontMatter.date"
-                        class="inline-flex items-center mr-4 mb-2 w-full sm:w-auto"
-                    >
-                        <BaseIcon icon="mynaui/calendar" size="size-3" class="mr-1" />
-                        {{ article.frontMatter.date }}
-                    </span>
-
-                    <BaseTag
-                        v-for="item in article.frontMatter.tags"
-                        :href="withBase(`/pages/tags.html?tag=${item}`)"
-                        :text="item"
-                        :key="item"
-                        font-size="text-3"
-                        margin="mr-2.5 mb-2"
-                    />
+                <div
+                    class="text-3 flex items-center flex-wrap mt-1 gap-1"
+                    v-if="article.frontMatter.category || article.frontMatter.tags"
+                >
+                    <div class="flex items-center gap-1" v-if="article.frontMatter.category">
+                        <BaseIcon icon="mynaui/layers-three" size="size-3" class="translate-y-px" />
+                        <span class=""> {{ article.frontMatter.category }}</span>
+                    </div>
+                    <template v-if="(article.frontMatter?.tags?.length ?? 0) > 0">
+                        <BaseIcon
+                            icon="mynaui/dots-vertical"
+                            size="size-4"
+                            class="translate-y-px"
+                        />
+                        <a
+                            v-for="item in article.frontMatter.tags"
+                            :href="withBase(`/pages/tags.html?tag=${item}`)"
+                            :key="item"
+                            class="text-3 mr-2.5 inline-block"
+                        >
+                            #{{ item }}
+                        </a>
+                    </template>
                 </div>
             </div>
             <div class="mt-4 flex justify-center gap-2">
@@ -160,6 +178,7 @@
 </template>
 
 <script lang="ts" setup>
+import { data as readingTimeData } from './../utils/reading-time.data.ts';
 import { withBase, useData } from 'vitepress';
 import { PropType, computed, ref, watch } from 'vue';
 import { initTags, initCategory } from '../functions';
@@ -172,9 +191,10 @@ interface Article {
     regularPath: string;
     frontMatter: {
         title: string;
-        description: string;
+        description?: string;
         date: string;
-        tags: string[];
+        tags?: string[];
+        category?: string;
         pin?: number;
     };
 }
@@ -260,4 +280,11 @@ const normalizeCategories = computed(() => {
 
     return result;
 });
+
+function getReadingTime(path: string) {
+    return (
+        readingTimeData.articles.find((article) => article.path === path)?.readingTime?.labelText ||
+        ''
+    );
+}
 </script>
