@@ -51,15 +51,7 @@
             </div>
         </template>
     </Layout>
-    <div
-        :class="[
-            'fixed right-0 bottom-0 m-8 flex flex-col items-center justify-center gap-2 transition-opacity',
-            percentage > 5 ? 'opacity-100' : 'opacity-0',
-        ]"
-    >
-        <span class="text-3 w-[6ch] text-center">{{ percentage }} %</span>
-        <BaseGoTopButton />
-    </div>
+    <ReadingProgressIndicator v-if="!frontmatter.page" />
     <Copyright v-if="!frontmatter.page" />
 </template>
 <script setup lang="ts">
@@ -67,16 +59,13 @@ import { data as readingTimeData } from './../utils/reading-time.data.ts';
 import { computed } from 'vue';
 import DefaultTheme from 'vitepress/theme';
 import Copyright from './Copyright.vue';
-import BaseGoTopButton from './base/BaseGoTopButton.vue';
-import usePagePercentage from './../composable/usePagePercentage';
+import ReadingProgressIndicator from './base/ReadingProgressIndicator.vue';
 import { withBase, useRoute, useData } from 'vitepress';
 import { initCategory } from '../functions';
 
 const { Layout } = DefaultTheme;
 const route = useRoute();
 const { frontmatter, theme } = useData();
-
-const { percentage } = usePagePercentage();
 
 const currentCategory = computed(
     () => frontmatter.value.category || theme.value.text.uncategorized,
