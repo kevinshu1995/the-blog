@@ -8,12 +8,25 @@ const pageSize = 10;
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title: "Wen-Hsiu's Blog",
-    description: '程式碼之外，還有生活的藝術。',
+    titleTemplate: 'Hsiu Blog',
+    description: '程式碼之外，還有生活的藝術',
+    lang: 'zh-TW',
+    cleanUrls: true,
     base: '/',
     cacheDir: './node_modules/vitepress_cache',
-    ignoreDeadLinks: true,
     srcDir: `./${GLOBAL_CONFIG.srcDirName}`,
+    lastUpdated: true,
+    sitemap: {
+        hostname: 'https://blog.hsiu.soy',
+    },
     themeConfig: {
+        lastUpdated: {
+            text: '最後更新時間',
+            formatOptions: {
+                dateStyle: 'full',
+                timeStyle: 'short',
+            },
+        },
         posts: await getPosts(pageSize),
         website: 'https://blog.hsiu.soy', //copyright link
         // logo: ''
@@ -21,7 +34,7 @@ export default defineConfig({
             repo: 'kevinshu1995/the-blog',
             issueTerm: 'pathname',
         },
-        nav: [{ text: '關於', link: '/pages/about' }],
+        nav: [{ text: '關於我', link: '/pages/about' }],
         search: {
             provider: 'local',
         },
@@ -35,7 +48,7 @@ export default defineConfig({
 
         // customize text
         author: {
-            intro: '',
+            intro: '程式碼之外，還有生活的藝術 \n 前端工程師 / 生活分享 / 筆記',
         },
         text: {
             suggestPost: '更多文章',

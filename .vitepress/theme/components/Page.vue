@@ -8,7 +8,9 @@
                     alt=""
                     class="size-26 rounded-full"
                 />
-                <p class="text-center !mb-0">{{ description }}</p>
+                <p class="text-center !mb-0 whitespace-pre">
+                    {{ theme.author.intro }}
+                </p>
                 <ul class="!p-0 !list-none text-sm flex gap-2 items-center line-height-4">
                     <li class="flex items-center gap-2 !m-0">
                         <span>{{ theme.text.archive }}</span>
