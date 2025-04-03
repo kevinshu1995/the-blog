@@ -28,7 +28,7 @@ export function initCategory(posts: Post[]) {
     const data: Record<string, Post[]> = {};
     for (let index = 0; index < posts.length; index++) {
         const element = posts[index];
-        const category = element.frontMatter.category;
+        const category = element.frontMatter.category ?? '未分類';
         if (category) {
             if (data[category]) {
                 data[category].push(element);
