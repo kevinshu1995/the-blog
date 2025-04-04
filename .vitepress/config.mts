@@ -49,6 +49,19 @@ export default defineConfig({
                 href: '/favicon.jpg',
             },
         ],
+
+        ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-SN2Z3XCX1H' }],
+        [
+            'script',
+            {},
+            `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'G-SN2Z3XCX1H');
+            `,
+        ],
     ],
     themeConfig: {
         siteTitle: '持續！修鍊之路',
