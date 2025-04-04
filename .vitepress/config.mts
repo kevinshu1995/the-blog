@@ -62,6 +62,15 @@ export default defineConfig({
                 gtag('config', 'G-SN2Z3XCX1H');
             `,
         ],
+        [
+            // Cloudflare Web Analytics
+            'script',
+            {
+                defer: '',
+                src: 'https://static.cloudflareinsights.com/beacon.min.js',
+                'data-cf-beacon': '{"token": "55fb86a8e230474783b10f836dd44f7b"}',
+            },
+        ],
     ],
     themeConfig: {
         siteTitle: '持續！修鍊之路',
