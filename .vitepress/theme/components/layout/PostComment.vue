@@ -2,7 +2,7 @@
 import { onMounted, ref, watch, nextTick } from 'vue';
 import { useData } from 'vitepress';
 const utterancesRef = ref();
-const { theme, isDark } = useData();
+const { theme, isDark, frontmatter } = useData();
 onMounted(() => {
     nextTick(() => {
         let { repo, issueTerm = 'pathname' } = theme.value.comment;
@@ -13,7 +13,7 @@ onMounted(() => {
             utterances.setAttribute('repo', repo);
             utterances.setAttribute('issue-term', issueTerm);
             utterances.setAttribute('label', 'CommentInBlog');
-            utterances.setAttribute('theme', isDark.value ? 'github-dark' : 'github-light');
+            utterances.setAttribute('theme', isDark.value ? 'photon-dark' : 'github-light');
             utterances.setAttribute('crossorigin', 'anonymous');
             utterancesRef.value.appendChild(utterances);
         }
@@ -26,7 +26,9 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="utterancesRef"></div>
+    <div>
+        <div ref="utterancesRef" v-if="!frontmatter.page"></div>
+    </div>
 </template>
 
 <style>

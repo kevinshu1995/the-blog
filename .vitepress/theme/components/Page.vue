@@ -219,7 +219,7 @@ import { initTags, initCategory } from '../functions';
 import BaseSidebar from './base/BaseSidebar.vue';
 import BaseTreeview from './base/BaseTreeview.vue';
 import BaseFlipCard from './base/BaseFlipCard.vue';
-import Copyright from './Copyright.vue';
+import Copyright from './layout/Copyright.vue';
 import type { DefaultTheme } from 'vitepress/theme';
 
 interface Article {

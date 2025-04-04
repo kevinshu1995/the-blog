@@ -1,130 +1,41 @@
 <template>
     <Layout>
         <template #doc-before>
-            <div v-if="!frontmatter.page">
-                <div class="text-3 pt-5 flex gap-2 items-end mb-2">
-                    <p v-if="!frontmatter.page" class="text-3">
-                        {{ frontmatter.date?.substring(0, 10) }}
-                    </p>
-                    <p v-if="currentPageReadingTime" class="text-3">
-                        / {{ currentPageReadingTime }}
-                    </p>
-                </div>
-
-                <div v-if="!frontmatter.page" class="-mx-2">
-                    <BaseTag
-                        v-for="item in frontmatter.tags"
-                        :href="withBase(`/pages/tags.html?tag=${item}`)"
-                        :text="item"
-                        :key="item"
-                        font-size="text-3"
-                    />
-                </div>
-            </div>
+            <PostMeta />
         </template>
 
         <template #doc-after>
-            <div class="pt-6 space-y-10" v-if="!frontmatter.page">
-                <NextPrevLinks />
-                <div class="flex gap-8">
-                    <img :src="theme.author.avatar" class="size-15 rounded-full" />
-                    <a href="https://www.buymeacoffee.com/hsiu" target="_blank">
-                        <img
-                            src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-                            alt="Buy Me A Coffee"
-                            style="height: 60px !important; width: 217px !important"
-                        />
-                    </a>
+            <div v-if="!frontmatter.page" class="space-y-20 pt-10">
+                <PostSupports />
+                <div class="space-y-10">
+                    <PostComment />
+                    <PostNextPrevLinks />
                 </div>
-            </div>
-            <div
-                class="py-20 my-20 border-t border-t-neutral-200 dark:border-t-neutral-800"
-                v-if="!frontmatter.page"
-            >
-                <h2 class="!mb-4 !font-bold !mt-0">{{ theme.text.suggestPost }}</h2>
-                <ul class="">
-                    <li
-                        v-for="(post, postIndex) in suggestPosts"
-                        :class="[
-                            postIndex !== 0 &&
-                                'mt-2 pt-2 border-t border-t-neutral-200 dark:border-t-neutral-800',
-                        ]"
-                    >
-                        <a
-                            :href="post.regularPath"
-                            class="flex flex-col md:flex-row justify-between w-full hover:text-[var(--vp-c-brand)] hover:underline"
-                        >
-                            <span class="line-clamp-2 md:line-clamp-1">
-                                {{ post.frontMatter.title }}
-                            </span>
-
-                            <span class="text-nowrap opacity-70">{{ post.frontMatter.date }}</span>
-                        </a>
-                    </li>
-                </ul>
+                <PostSuggestions />
             </div>
         </template>
         <template #not-found>
             <NotFoundPage />
         </template>
     </Layout>
-    <ReadingProgressIndicator v-if="!frontmatter.page" />
+
+    <PostReadingProgressIndicator v-if="!frontmatter.page" />
     <Copyright v-if="!frontmatter.page" />
 </template>
+
 <script setup lang="ts">
-import { data as readingTimeData } from './../utils/reading-time.data.ts';
-import { computed } from 'vue';
 import DefaultTheme from 'vitepress/theme';
-import Copyright from './Copyright.vue';
-import ReadingProgressIndicator from './base/ReadingProgressIndicator.vue';
-import NextPrevLinks from './layout/NextPrevLinks.vue';
+import Copyright from './layout/Copyright.vue';
+import PostReadingProgressIndicator from './layout/PostReadingProgressIndicator.vue';
+import PostNextPrevLinks from './layout/PostNextPrevLinks.vue';
+import PostComment from './layout/PostComment.vue';
+import PostSuggestions from './layout/PostSuggestions.vue';
+import PostMeta from './layout/PostMeta.vue';
+import PostSupports from './layout/PostSupports.vue';
 import NotFoundPage from './NotFoundPage.vue';
-import { withBase, useRoute, useData } from 'vitepress';
-import { initCategory } from '../functions';
+import { useRoute, useData } from 'vitepress';
 
 const { Layout } = DefaultTheme;
 const route = useRoute();
 const { frontmatter, theme } = useData();
-
-const currentCategory = computed(
-    () => frontmatter.value.category || theme.value.text.uncategorized,
-);
-
-const currentPostIndex = computed(() => {
-    return theme.value.posts.findIndex((item) => item.regularPath === route.path);
-});
-
-const nextPost = computed(() => theme.value.posts[currentPostIndex.value - 1] ?? null);
-const prevPost = computed(() => theme.value.posts[currentPostIndex.value + 1] ?? null);
-
-const suggestPosts = computed(() => {
-    const allPosts = theme.value.posts.filter((item) => item.regularPath !== route.path);
-
-    const posts = initCategory(allPosts, theme.value.text.uncategorized);
-
-    const currentCategoryPosts = posts[currentCategory.value] ?? [];
-
-    const _suggestPosts = currentCategoryPosts.filter((item) => item.regularPath !== route.path);
-
-    const suggestPostsLength = theme.value.suggestPostLength ?? 5;
-    if (_suggestPosts.length > suggestPostsLength) {
-        return _suggestPosts.slice(0, suggestPostsLength);
-    }
-
-    const remainingCount = suggestPostsLength - _suggestPosts.length;
-
-    // 從其他類別文章中找出補充的建議文章
-    const otherCategoryPosts = allPosts.filter((post) => !currentCategoryPosts.includes(post));
-    const extraPosts = otherCategoryPosts.slice(0, remainingCount);
-
-    return [..._suggestPosts, ...extraPosts];
-});
-
-// 獲取當前頁面的閱讀時間
-const currentPageReadingTime = computed(() => {
-    return (
-        readingTimeData.articles.find((article) => article.path === route.path)?.readingTime
-            ?.labelText || ''
-    );
-});
 </script>

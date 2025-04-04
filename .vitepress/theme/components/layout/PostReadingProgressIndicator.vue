@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import usePagePercentage from './../../composable/usePagePercentage';
+import usePagePercentage from '../../composable/usePagePercentage';
 import { useWindowScroll } from '@vueuse/core';
 
 const { y: windowY } = useWindowScroll({ behavior: 'smooth' });
