@@ -1,13 +1,14 @@
-import { defineLoader, createContentLoader } from 'vitepress';
+import { defineLoader, createContentLoader, type SiteConfig } from 'vitepress';
+
+type CalculateReadingTimeResult = {
+    minutes: number;
+    labelText: string;
+};
 
 export interface ReadingTimeData {
     path: string;
     title: string;
-    readingTime: {
-        minutes: number;
-        seconds: number;
-        labelText: string;
-    };
+    readingTime: CalculateReadingTimeResult;
 }
 
 export interface ReadingTimeResult {
@@ -17,17 +18,18 @@ export interface ReadingTimeResult {
 declare const data: ReadingTimeResult;
 export { data };
 
-// 每分鐘的平均閱讀字數（中文）
-const CHARS_PER_MINUTE = 300;
-
 /**
- * 計算文本的閱讀時間
+ * 計算文本的閱讀時間（僅顯示分鐘數）
+ * @param text 要計算的文本內容
+ * @param minuteFormat 時間格式模板，支援 mm(分鐘)占位符
  */
-function calculateReadingTime(text: string): {
-    minutes: number;
-    seconds: number;
-    labelText: string;
-} {
+function calculateReadingTime(text: string): CalculateReadingTimeResult {
+    const config: SiteConfig = (globalThis as any).VITEPRESS_CONFIG;
+    const { charsPerMinute, minuteFormat } = config.userConfig.themeConfig.readingTime ?? {
+        charsPerMinute: 250,
+        minuteFormat: 'mm 分鐘閱讀',
+    };
+
     // 移除HTML標籤
     const textWithoutHTML = text.replace(/<[^>]*>/g, '');
 
@@ -37,15 +39,27 @@ function calculateReadingTime(text: string): {
     // 計算字符數（不含空格）
     const charCount = cleanText.replace(/\s/g, '').length;
 
-    // 計算閱讀時間（分鐘和秒）
-    const totalSeconds = Math.ceil((charCount / CHARS_PER_MINUTE) * 60);
-    const minutes = Math.floor(totalSeconds / 60);
+    // 計算閱讀時間（總秒數）
+    const totalSeconds = Math.ceil((charCount / charsPerMinute) * 60);
+
+    // 計算分鐘數（如果秒數大於30，則分鐘數加1）
     const seconds = totalSeconds % 60;
+    let minutes = Math.floor(totalSeconds / 60);
 
-    // 生成可讀的文本
-    const labelText = minutes > 0 ? `${minutes} 分 ${seconds} 秒閱讀` : `${seconds} 秒閱讀`;
+    if (seconds > 30) {
+        minutes += 1;
+    }
 
-    return { minutes, seconds, labelText };
+    // 確保至少顯示1分鐘
+    minutes = Math.max(1, minutes);
+
+    // 替換格式中的變量
+    const labelText = minuteFormat.replace(/mm/g, minutes.toString());
+
+    return {
+        minutes,
+        labelText,
+    };
 }
 
 export default defineLoader({

@@ -69,7 +69,14 @@ export default defineConfig({
         ],
         darkModeSwitchLabel: '切換模式',
 
+        // 文章頁的推薦文章數量上限
         suggestPostLength: 5,
+
+        // 閱讀時間
+        readingTime: {
+            charsPerMinute: 250,
+            minuteFormat: 'mm 分鐘閱讀',
+        },
 
         // customize text
         author: {
