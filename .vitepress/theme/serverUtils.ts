@@ -40,6 +40,7 @@ async function generatePaginationPages(total: number, pageSize: number) {
 page: true
 title: ${i === 1 ? 'home' : 'page_' + i}
 aside: false
+lastUpdated: false
 ---
 <script setup>
 import Page from "./../.vitepress/theme/components/Page.vue";
