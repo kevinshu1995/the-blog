@@ -1,8 +1,8 @@
 <template>
-    <div class="flex flex-col md:flex-row gap-16">
+    <div class="flex flex-col md:flex-row gap-16 w-full">
         <!-- Author aside -->
-        <BaseSidebar width="250">
-            <div class="flex flex-col items-center mt-[10vh]">
+        <BaseSidebar width="250" class="shrink-0">
+            <div class="flex flex-col items-center mt-[5vh] pb-10">
                 <div class="relative group">
                     <BaseFlipCard class="size-26 rounded-full">
                         <template #front>
@@ -211,7 +211,7 @@
 </template>
 
 <script lang="ts" setup>
-import { data as readingTimeData } from './../utils/reading-time.data.ts';
+import { data as readingTimeData } from './../utils/reading-time.data';
 import { withBase, useData } from 'vitepress';
 import { PropType, computed, ref, watch } from 'vue';
 import { initTags, initCategory } from '../functions';
