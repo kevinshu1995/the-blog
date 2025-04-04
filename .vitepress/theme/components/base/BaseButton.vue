@@ -16,7 +16,7 @@ defineProps({
     },
     border: {
         type: String,
-        default: 'border border-[var(--vp-c-text-1)]',
+        default: 'border border-solid border-[var(--vp-c-text-1)]',
     },
     padding: {
         type: String,
