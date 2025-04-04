@@ -49,21 +49,6 @@ export default defineConfig({
                 href: '/favicon.jpg',
             },
         ],
-        [
-            'script',
-            {
-                src: 'https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js',
-                'data-name': 'bmc-button',
-                'data-slug': 'hsiu',
-                'data-color': '#FFDD00',
-                'data-emoji': '☕',
-                'data-font': 'Cookie',
-                'data-text': 'Buy me a coffee',
-                'data-outline-color': '#000000',
-                'data-font-color': '#000000',
-                'data-coffee-color': '#ffffff',
-            },
-        ],
     ],
     themeConfig: {
         siteTitle: '持續！修鍊之路',
