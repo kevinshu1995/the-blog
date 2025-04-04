@@ -24,7 +24,8 @@
         </template>
 
         <template #doc-after>
-            <div class="pt-10" v-if="!frontmatter.page">
+            <div class="pt-6 space-y-10" v-if="!frontmatter.page">
+                <NextPrevLinks />
                 <div class="flex gap-8">
                     <img :src="theme.author.avatar" class="size-15 rounded-full" />
                     <a href="https://www.buymeacoffee.com/hsiu" target="_blank">
@@ -76,6 +77,7 @@ import { computed } from 'vue';
 import DefaultTheme from 'vitepress/theme';
 import Copyright from './Copyright.vue';
 import ReadingProgressIndicator from './base/ReadingProgressIndicator.vue';
+import NextPrevLinks from './layout/NextPrevLinks.vue';
 import NotFoundPage from './NotFoundPage.vue';
 import { withBase, useRoute, useData } from 'vitepress';
 import { initCategory } from '../functions';
@@ -87,6 +89,13 @@ const { frontmatter, theme } = useData();
 const currentCategory = computed(
     () => frontmatter.value.category || theme.value.text.uncategorized,
 );
+
+const currentPostIndex = computed(() => {
+    return theme.value.posts.findIndex((item) => item.regularPath === route.path);
+});
+
+const nextPost = computed(() => theme.value.posts[currentPostIndex.value - 1] ?? null);
+const prevPost = computed(() => theme.value.posts[currentPostIndex.value + 1] ?? null);
 
 const suggestPosts = computed(() => {
     const allPosts = theme.value.posts.filter((item) => item.regularPath !== route.path);
