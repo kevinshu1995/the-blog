@@ -19,7 +19,7 @@ async function getPosts(pageSize: number) {
             return {
                 frontMatter: data,
                 regularPath: `/${item
-                    .replace('.md', '.html')
+                    .replace('.md', '') // 如果 config.cleanUrls 為 true 則要去掉 .md，若為 false 則要改成 .html
                     .replace(`${GLOBAL_CONFIG.srcDirName}/`, '')}`,
             };
         }),
