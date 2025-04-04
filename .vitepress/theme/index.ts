@@ -11,6 +11,7 @@ import Comment from './components/Comment.vue';
 
 import BaseTag from './components/base/BaseTag.vue';
 import BaseIcon from './components/base/BaseIcon.vue';
+import BaseButton from './components/base/BaseButton.vue';
 import BaseGithubGistIframe from './components/base/BaseGithubGistIframe.vue';
 
 import './custom.css';
@@ -20,6 +21,7 @@ export default {
     ...DefaultTheme,
     Layout: NewLayout,
     enhanceApp({ app, router, siteData }) {
+        app.component('BaseButton', BaseButton);
         app.component('BaseGithubGistIframe', BaseGithubGistIframe);
         app.component('BaseIcon', BaseIcon);
         app.component('BaseTag', BaseTag);

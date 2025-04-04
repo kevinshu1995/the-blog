@@ -12,12 +12,7 @@
                     不幸的是，這個入口通往的頁面正在宇宙的某處度假。可能是去了馬爾地夫曬太陽，也可能只是躲在伺服器的某個角落偷懶。
                 </p>
             </div>
-            <a
-                href="/"
-                class="border border-[var(--vp-c-text-1)] py-2 px-4 rounded hover:bg-[var(--vp-c-text-1)] hover:text-[var(--vp-c-bg)]"
-            >
-                回到首頁
-            </a>
+            <BaseButton href="/"> 回到首頁 </BaseButton>
             <div class="space-y-2">
                 <p>也可以使用<span class="font-bold">搜尋功能</span></p>
                 <p>或許能找到那個躲貓貓的頁面</p>
