@@ -24,7 +24,7 @@
         </template>
 
         <template #doc-after>
-            <div class="pt-10">
+            <div class="pt-10" v-if="!frontmatter.page">
                 <div class="flex gap-8">
                     <img :src="theme.author.avatar" class="size-15 rounded-full" />
                     <a href="https://www.buymeacoffee.com/hsiu" target="_blank">
