@@ -20,7 +20,7 @@
     </Layout>
 
     <PostReadingProgressIndicator v-if="!frontmatter.page" />
-    <Copyright v-if="!frontmatter.page" />
+    <Copyright v-if="!frontmatter.home" />
 </template>
 
 <script setup lang="ts">
