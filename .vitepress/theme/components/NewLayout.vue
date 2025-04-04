@@ -22,7 +22,20 @@
                 </div>
             </div>
         </template>
+
         <template #doc-after>
+            <div class="pt-10">
+                <div class="flex gap-8">
+                    <img :src="theme.author.avatar" class="size-15 rounded-full" />
+                    <a href="https://www.buymeacoffee.com/hsiu" target="_blank">
+                        <img
+                            src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+                            alt="Buy Me A Coffee"
+                            style="height: 60px !important; width: 217px !important"
+                        />
+                    </a>
+                </div>
+            </div>
             <div
                 class="py-20 my-20 border-t border-t-neutral-200 dark:border-t-neutral-800"
                 v-if="!frontmatter.page"
