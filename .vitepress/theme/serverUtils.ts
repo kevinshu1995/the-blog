@@ -31,6 +31,7 @@ async function getPosts(pageSize: number) {
 
 async function generatePaginationPages(total: number, pageSize: number) {
     const homePageName = GLOBAL_CONFIG.homePageName;
+    const homePageListName = GLOBAL_CONFIG.homePageListName;
     //  pagesNum
     let pagesNum = total % pageSize === 0 ? total / pageSize : Math.floor(total / pageSize) + 1;
     const paths = resolve('./articles');
@@ -39,7 +40,7 @@ async function generatePaginationPages(total: number, pageSize: number) {
             const page = `
 ---
 page: true
-title: ${i === 1 ? homePageName : `${homePageName} - ${i}`}
+title: ${i === 1 ? homePageName : `${homePageListName} - ${i}`}
 aside: false
 lastUpdated: false
 home: true

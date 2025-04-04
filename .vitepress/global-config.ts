@@ -1,4 +1,5 @@
 export default {
     srcDirName: 'articles',
-    homePageName: '文章列表',
+    homePageName: '首頁',
+    homePageListName: '文章列表',
 };

@@ -32,7 +32,7 @@ const rssOptions: RSSOptions = {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title,
-    titleTemplate: '修鍊之路',
+    titleTemplate: '網頁前端 | 生活紀錄 | 攝影',
     description,
     lang,
     cleanUrls: true,
