@@ -3,11 +3,24 @@
         <!-- Author aside -->
         <BaseSidebar width="250">
             <div class="flex flex-col items-center mt-[10vh]">
-                <img
-                    src="https://c.tenor.com/wfdSCMP3BVEAAAAC/tenor.gif"
-                    alt=""
-                    class="size-26 rounded-full"
-                />
+                <div class="relative group">
+                    <BaseFlipCard class="size-26 rounded-full">
+                        <template #front>
+                            <img
+                                :src="theme.author.avatar"
+                                :alt="`${theme.author.name}'s Avatar Image`"
+                                class="size-26 rounded-full object-cover"
+                            />
+                        </template>
+                        <template #back>
+                            <img
+                                src="https://c.tenor.com/wfdSCMP3BVEAAAAC/tenor.gif"
+                                :alt="`${theme.author.name}'s Avatar Image`"
+                                class="size-26 rounded-full object-cover"
+                            />
+                        </template>
+                    </BaseFlipCard>
+                </div>
                 <p class="text-center !mb-0 whitespace-pre">
                     {{ theme.author.intro }}
                 </p>
@@ -41,6 +54,14 @@
                         </a>
                     </li>
                 </ul>
+                <div class="mt-2">
+                    <a href="https://www.buymeacoffee.com/hsiu" target="_blank"
+                        ><img
+                            src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+                            alt="Buy Me A Coffee"
+                            style="height: 40px !important; width: 144.7px !important"
+                    /></a>
+                </div>
                 <!-- tags -->
                 <div class="!mt-4 border-t border-t-neutral-100 dark:border-t-neutral-800 !pt-4">
                     <div class="flex justify-between items-center mb-2">
@@ -196,6 +217,7 @@ import { PropType, computed, ref, watch } from 'vue';
 import { initTags, initCategory } from '../functions';
 import BaseSidebar from './base/BaseSidebar.vue';
 import BaseTreeview from './base/BaseTreeview.vue';
+import BaseFlipCard from './base/BaseFlipCard.vue';
 import Copyright from './Copyright.vue';
 import type { DefaultTheme } from 'vitepress/theme';
 

@@ -30,6 +30,7 @@ async function getPosts(pageSize: number) {
 }
 
 async function generatePaginationPages(total: number, pageSize: number) {
+    const homePageName = GLOBAL_CONFIG.homePageName;
     //  pagesNum
     let pagesNum = total % pageSize === 0 ? total / pageSize : Math.floor(total / pageSize) + 1;
     const paths = resolve('./articles');
@@ -38,7 +39,7 @@ async function generatePaginationPages(total: number, pageSize: number) {
             const page = `
 ---
 page: true
-title: ${i === 1 ? 'home' : 'page_' + i}
+title: ${i === 1 ? homePageName : `${homePageName} - ${i}`}
 aside: false
 lastUpdated: false
 ---
@@ -54,7 +55,6 @@ const posts = theme.value.posts.slice(${pageSize * (i - 1)},${pageSize * i})
             await fs.writeFile(file, page);
         }
     }
-    console.log('hello', paths);
     // rename page_1 to index for homepage
     await fs.move(paths + '/page_1.md', paths + '/index.md', { overwrite: true });
 }

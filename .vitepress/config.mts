@@ -4,7 +4,7 @@ import GLOBAL_CONFIG from './global-config';
 import UnoCSS from 'unocss/vite';
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss';
 
-const pageSize = 10;
+const pageSize = 10; // 每頁顯示的文章數量
 
 const hostname = 'https://blog.hsiu.soy';
 const title = "Wen-Hsiu's Blog";
@@ -30,7 +30,7 @@ const rssOptions: RSSOptions = {
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title,
-    titleTemplate: 'Hsiu Blog',
+    titleTemplate: '修鍊之路',
     description,
     lang,
     cleanUrls: true,
@@ -41,7 +41,32 @@ export default defineConfig({
     sitemap: {
         hostname,
     },
+    head: [
+        [
+            'link',
+            {
+                rel: 'icon',
+                href: '/favicon.jpg',
+            },
+        ],
+        [
+            'script',
+            {
+                src: 'https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js',
+                'data-name': 'bmc-button',
+                'data-slug': 'hsiu',
+                'data-color': '#FFDD00',
+                'data-emoji': '☕',
+                'data-font': 'Cookie',
+                'data-text': 'Buy me a coffee',
+                'data-outline-color': '#000000',
+                'data-font-color': '#000000',
+                'data-coffee-color': '#ffffff',
+            },
+        ],
+    ],
     themeConfig: {
+        siteTitle: '持續！修鍊之路',
         lastUpdated: {
             text: '最後更新時間',
             formatOptions: {
@@ -51,7 +76,7 @@ export default defineConfig({
         },
         posts: await getPosts(pageSize),
         website: 'https://blog.hsiu.soy', //copyright link
-        // logo: ''
+        logo: '/avatar-pixel-2.jpg',
         comment: {
             repo: 'kevinshu1995/the-blog',
             issueTerm: 'pathname',
@@ -80,7 +105,9 @@ export default defineConfig({
 
         // customize text
         author: {
-            intro: '程式碼之外，還有生活的藝術 \n 前端工程師 / 生活分享 / 筆記',
+            name: 'Wen-Hsiu Hsu',
+            intro: '程式碼之外\n還有生活的藝術\n前端工程師 / 攝影 / 生活紀錄',
+            avatar: '/avatar-pixel-2.jpg',
         },
         text: {
             suggestPost: '更多文章',

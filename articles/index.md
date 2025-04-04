@@ -1,6 +1,6 @@
 ---
 page: true
-title: home
+title: 文章列表
 aside: false
 lastUpdated: false
 ---

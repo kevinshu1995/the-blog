@@ -128,5 +128,12 @@ h3 {
     }
 }
 
+.VPImage.logo {
+    border-radius: 999px;
+}
+
+.VPNavBarTitle .title {
+    font-family: var(--vp-font-family-base) !important;
+}
 /* for aside end */
 /* theme reset end */
