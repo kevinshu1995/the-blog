@@ -24,9 +24,6 @@ keyword:
 先來個原生範例
 
 <iframe height="300" style="width: 100%;" scrolling="no" title="form" src="https://codepen.io/kevinshu/embed/preview/BaJGNgq?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/kevinshu/pen/BaJGNgq">
-  form</a> by kevinshu (<a href="https://codepen.io/kevinshu">@kevinshu</a>)
-  on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
 > 看起來沒什麼問題啊 XD
@@ -40,9 +37,6 @@ keyword:
 直接把剛剛的範例改寫成
 
 <iframe height="300" style="width: 100%;" scrolling="no" title="form - formdata" src="https://codepen.io/kevinshu/embed/preview/MWrzaYw?default-tab=result" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
-  See the Pen <a href="https://codepen.io/kevinshu/pen/MWrzaYw">
-  form - formdata</a> by kevinshu (<a href="https://codepen.io/kevinshu">@kevinshu</a>)
-  on <a href="https://codepen.io">CodePen</a>.
 </iframe>
 
 是不是看起來好像很方便!?
