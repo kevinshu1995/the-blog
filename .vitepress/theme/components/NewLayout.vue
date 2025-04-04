@@ -50,6 +50,9 @@
                 </ul>
             </div>
         </template>
+        <template #not-found>
+            <NotFoundPage />
+        </template>
     </Layout>
     <ReadingProgressIndicator v-if="!frontmatter.page" />
     <Copyright v-if="!frontmatter.page" />
@@ -60,6 +63,7 @@ import { computed } from 'vue';
 import DefaultTheme from 'vitepress/theme';
 import Copyright from './Copyright.vue';
 import ReadingProgressIndicator from './base/ReadingProgressIndicator.vue';
+import NotFoundPage from './NotFoundPage.vue';
 import { withBase, useRoute, useData } from 'vitepress';
 import { initCategory } from '../functions';
 
