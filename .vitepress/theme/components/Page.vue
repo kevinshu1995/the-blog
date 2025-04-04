@@ -101,15 +101,24 @@
                 ]"
             >
                 <div class="flex items-center text-3 gap-1 mb-0.5">
-                    <span v-if="article.frontMatter.date" class="inline-flex items-center">
-                        <BaseIcon icon="mynaui/calendar" size="size-3" class="mr-1" />
-                        {{ article.frontMatter.date }}
+                    <span v-if="article.frontMatter.date" class="inline-flex items-center gap-1">
+                        <BaseIcon icon="mynaui/calendar" size="size-3" />
+                        <span>{{ article.frontMatter.date }}</span>
                     </span>
 
-                    <BaseIcon icon="mynaui/dots-vertical" size="size-4" class="translate-y-px" />
-                    <span class="inline-flex items-center">
-                        {{ getReadingTime(article.regularPath) }}
-                    </span>
+                    <template v-if="getReadingTime(article.regularPath)">
+                        <BaseIcon
+                            icon="mynaui/dots-vertical"
+                            size="size-4"
+                            class="translate-y-px"
+                        />
+                        <span class="inline-flex items-center gap-1">
+                            <BaseIcon icon="mynaui/watch" size="size-3" />
+                            <span class="inline-flex items-center">
+                                {{ getReadingTime(article.regularPath) }}
+                            </span>
+                        </span>
+                    </template>
                 </div>
                 <div class="flex items-center justify-between relative">
                     <div class="text-5 line-clamp-2">
@@ -286,8 +295,8 @@ const normalizeCategories = computed(() => {
 
 function getReadingTime(path: string) {
     return (
-        readingTimeData.articles.find((article) => article.path === path)?.readingTime?.labelText ||
-        ''
+        readingTimeData.articles.find((article) => article.path === path.replace('.html', ''))
+            ?.readingTime?.labelText || ''
     );
 }
 </script>
