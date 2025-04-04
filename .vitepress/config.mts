@@ -2,22 +2,44 @@ import { defineConfig } from 'vitepress';
 import { getPosts } from './theme/serverUtils';
 import GLOBAL_CONFIG from './global-config';
 import UnoCSS from 'unocss/vite';
+import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss';
 
 const pageSize = 10;
 
+const hostname = 'https://blog.hsiu.soy';
+const title = "Wen-Hsiu's Blog";
+const description = '程式碼之外，還有生活的藝術';
+const lang = 'zh-TW';
+const rssFileName = 'feed.rss';
+
+const rssOptions: RSSOptions = {
+    title,
+    baseUrl: hostname,
+    copyright: 'Copyright (c) 2025-present, Wen-Hsiu Hsu',
+    description,
+    language: lang,
+    author: {
+        name: 'Wen-Hsiu Hsu',
+        email: 'kevin.hsu.hws@gmail.com',
+        link: 'https://hsiu.soy',
+    },
+    icon: false,
+    filename: rssFileName,
+};
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-    title: "Wen-Hsiu's Blog",
+    title,
     titleTemplate: 'Hsiu Blog',
-    description: '程式碼之外，還有生活的藝術',
-    lang: 'zh-TW',
+    description,
+    lang,
     cleanUrls: true,
     base: '/',
     cacheDir: './node_modules/vitepress_cache',
     srcDir: `./${GLOBAL_CONFIG.srcDirName}`,
     lastUpdated: true,
     sitemap: {
-        hostname: 'https://blog.hsiu.soy',
+        hostname,
     },
     themeConfig: {
         lastUpdated: {
@@ -41,7 +63,10 @@ export default defineConfig({
         outline: {
             label: '文章摘要',
         },
-        socialLinks: [{ icon: 'github', link: 'https://github.com/kevinshu1995' }],
+        socialLinks: [
+            { icon: 'github', link: 'https://github.com/kevinshu1995' },
+            { icon: 'rss', link: `/${rssFileName}` },
+        ],
         darkModeSwitchLabel: '切換模式',
 
         suggestPostLength: 5,
@@ -62,6 +87,6 @@ export default defineConfig({
     } as any,
     srcExclude: ['README.md'],
     vite: {
-        plugins: [UnoCSS()],
+        plugins: [UnoCSS(), RssPlugin(rssOptions)],
     },
 });

@@ -25,7 +25,7 @@
                     </li>
                 </ul>
                 <ul class="!p-0 !list-none text-sm flex flex-wrap gap-2 !mt-2 !mb-0">
-                    <li v-for="link in theme.socialLinks">
+                    <li v-for="link in theme.socialLinks" class="!m-0">
                         <a
                             :href="link.link"
                             class="block p-1"
