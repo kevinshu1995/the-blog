@@ -21,7 +21,7 @@
                         </template>
                     </BaseFlipCard>
                 </div>
-                <p class="text-center !mb-0 whitespace-pre">
+                <p class="text-center !mb-0 whitespace-pre !line-height-5">
                     {{ theme.author.intro }}
                 </p>
                 <ul class="!p-0 !list-none text-sm flex gap-2 items-center line-height-4">
@@ -41,7 +41,7 @@
                     <li v-for="link in theme.socialLinks" class="!m-0">
                         <a
                             :href="link.link"
-                            class="block p-1"
+                            class="block p-1 opacity-80"
                             target="_blank"
                             :aria-label="link.ariaLabel"
                         >
@@ -55,12 +55,13 @@
                     </li>
                 </ul>
                 <div class="mt-2">
-                    <a href="https://www.buymeacoffee.com/hsiu" target="_blank"
-                        ><img
+                    <a href="https://www.buymeacoffee.com/hsiu" target="_blank">
+                        <img
                             src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
                             alt="Buy Me A Coffee"
                             style="height: 40px !important; width: 144.7px !important"
-                    /></a>
+                        />
+                    </a>
                 </div>
                 <!-- tags -->
                 <div class="!mt-4 border-t border-t-neutral-100 dark:border-t-neutral-800 !pt-4">

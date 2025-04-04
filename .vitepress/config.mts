@@ -89,6 +89,7 @@ export default defineConfig({
             label: '文章摘要',
         },
         socialLinks: [
+            { icon: 'gmail', link: 'mailto:kevin.hsu.hws@gmail.com' },
             { icon: 'github', link: 'https://github.com/kevinshu1995' },
             { icon: 'rss', link: `/${rssFileName}` },
         ],
@@ -106,7 +107,7 @@ export default defineConfig({
         // customize text
         author: {
             name: 'Wen-Hsiu Hsu',
-            intro: '程式碼之外\n還有生活的藝術\n前端工程師 / 攝影 / 生活紀錄',
+            intro: '程式碼之外，還有生活的藝術\n前端工程師 / 攝影 / 生活紀錄',
             avatar: '/avatar-pixel-2.jpg',
         },
         text: {
