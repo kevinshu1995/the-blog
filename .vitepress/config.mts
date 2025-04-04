@@ -3,12 +3,14 @@ import { getPosts } from './theme/serverUtils';
 import GLOBAL_CONFIG from './global-config';
 import UnoCSS from 'unocss/vite';
 import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss';
+import transformHead from './theme/utils/transformHead';
 
 const pageSize = 10; // 每頁顯示的文章數量
 
 const hostname = 'https://blog.hsiu.soy';
 const title = "Wen-Hsiu's Blog";
-const description = '程式碼之外，還有生活的藝術';
+const description =
+    '前端工程師的個人部落格，主要撰寫技術、生活分享與個人筆記的文章。程式碼之外，還有生活的藝術';
 const lang = 'zh-TW';
 const rssFileName = 'feed.rss';
 
@@ -131,4 +133,5 @@ export default defineConfig({
     vite: {
         plugins: [UnoCSS(), RssPlugin(rssOptions)],
     },
+    transformHead,
 });
