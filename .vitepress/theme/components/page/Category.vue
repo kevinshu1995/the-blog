@@ -1,13 +1,13 @@
 <template>
-    <div v-for="yearList in data">
+    <div v-for="(posts, key) in data">
         <div class="pt-7 pb-2.5 font-bold text-[var(--bt-theme-title)] text-5.5">
-            {{ yearList[0].frontMatter.date.split('-')[0] }}
+            {{ key }}
         </div>
         <a
             :href="withBase(article.regularPath)"
-            v-for="(article, index) in yearList"
+            v-for="(article, index) in posts"
             :key="index"
-            class="py-1 pt-1 md:pt-1 pb-1 md:pb-[25px] flex justify-between items-center hover:underline"
+            class="pb-1 mb-1 md:pb-2 md:mb-2 flex justify-between items-center text-[var(--vp-c-text-1)] hover:text-[var(--vp-c-brand)] border-b border-b-[var(--vp-c-gray-soft)] hover:underline"
         >
             <div class="text-[var(--vp-c-text-1)] hover:text-[var(--vp-c-brand)] line-clamp-1">
                 <div
@@ -15,16 +15,15 @@
                 ></div>
                 {{ article.frontMatter.title }}
             </div>
-            <div class="text-[var(--date-color)]">{{ article.frontMatter.date.slice(5) }}</div>
+            <div class="text-[var(--date-color)]">{{ article.frontMatter.date }}</div>
         </a>
     </div>
 </template>
-
 <script lang="ts" setup>
 import { useData, withBase } from 'vitepress';
 import { computed } from 'vue';
-import { useYearSort } from '../functions';
+import { initCategory } from '../../functions';
 
 const { theme } = useData();
-const data = computed(() => useYearSort(theme.value.posts));
+const data = computed(() => initCategory(theme.value.posts, theme.value.text.uncategorized));
 </script>

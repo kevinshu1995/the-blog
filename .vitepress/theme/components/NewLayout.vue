@@ -32,7 +32,7 @@ import PostComment from './layout/PostComment.vue';
 import PostSuggestions from './layout/PostSuggestions.vue';
 import PostMeta from './layout/PostMeta.vue';
 import PostSupports from './layout/PostSupports.vue';
-import NotFoundPage from './NotFoundPage.vue';
+import NotFoundPage from './page/NotFoundPage.vue';
 import { useRoute, useData } from 'vitepress';
 
 const { Layout } = DefaultTheme;

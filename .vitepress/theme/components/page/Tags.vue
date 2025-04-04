@@ -31,7 +31,7 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 import { useData, withBase } from 'vitepress';
-import { initTags } from '../functions';
+import { initTags } from '../../functions';
 
 let url = location.href.split('?')[1];
 let params = new URLSearchParams(url);

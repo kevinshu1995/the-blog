@@ -212,14 +212,14 @@
 </template>
 
 <script lang="ts" setup>
-import { data as readingTimeData } from './../utils/reading-time.data';
+import { data as readingTimeData } from '../../utils/reading-time.data';
 import { withBase, useData } from 'vitepress';
-import { PropType, computed, ref, watch } from 'vue';
-import { initTags, initCategory } from '../functions';
-import BaseSidebar from './base/BaseSidebar.vue';
-import BaseTreeview from './base/BaseTreeview.vue';
-import BaseFlipCard from './base/BaseFlipCard.vue';
-import Copyright from './layout/Copyright.vue';
+import { PropType, computed } from 'vue';
+import { initTags, initCategory } from '../../functions';
+import BaseSidebar from './../base/BaseSidebar.vue';
+import BaseTreeview from './../base/BaseTreeview.vue';
+import BaseFlipCard from './../base/BaseFlipCard.vue';
+import Copyright from './../layout/Copyright.vue';
 import type { DefaultTheme } from 'vitepress/theme';
 
 interface Article {

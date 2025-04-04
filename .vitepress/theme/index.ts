@@ -3,11 +3,14 @@ import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 
 import NewLayout from './components/NewLayout.vue';
-import Archives from './components/Archives.vue';
-import Category from './components/Category.vue';
-import Tags from './components/Tags.vue';
-import Page from './components/Page.vue';
 
+// 特定頁面使用的
+import Archives from './components/page/Archives.vue';
+import Category from './components/page/Category.vue';
+import Tags from './components/page/Tags.vue';
+import Page from './components/page/Page.vue';
+
+// 可重複使用的
 import BaseTag from './components/base/BaseTag.vue';
 import BaseIcon from './components/base/BaseIcon.vue';
 import BaseButton from './components/base/BaseButton.vue';

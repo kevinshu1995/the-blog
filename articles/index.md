@@ -3,9 +3,10 @@ page: true
 title: 文章列表
 aside: false
 lastUpdated: false
+home: true
 ---
 <script setup>
-import Page from "./../.vitepress/theme/components/Page.vue";
+import Page from "./../.vitepress/theme/components/page/Page.vue";
 import { useData } from "vitepress";
 const { theme } = useData();
 const posts = theme.value.posts.slice(0,10)
