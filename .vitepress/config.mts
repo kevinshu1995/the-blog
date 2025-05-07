@@ -7,7 +7,7 @@ import transformHead from './theme/utils/transformHead';
 
 const pageSize = 10; // 每頁顯示的文章數量
 
-const hostname = 'https://blog.hsiu.soy';
+const hostname = 'https://hsiu.soy';
 const title = "Wen-Hsiu's Blog";
 const description =
     '前端工程師的個人部落格，主要撰寫技術、生活分享與個人筆記的文章。程式碼之外，還有生活的藝術';
@@ -23,7 +23,7 @@ const rssOptions: RSSOptions = {
     author: {
         name: 'Wen-Hsiu Hsu',
         email: 'kevin.hsu.hws@gmail.com',
-        link: 'https://hsiu.soy',
+        link: 'https://resume.hsiu.soy',
     },
     icon: false,
     filename: rssFileName,
@@ -84,7 +84,7 @@ export default defineConfig({
             },
         },
         posts: await getPosts(pageSize),
-        website: 'https://blog.hsiu.soy', //copyright link
+        website: 'https://hsiu.soy', //copyright link
         logo: '/avatar-pixel-2.jpg',
         comment: {
             repo: 'kevinshu1995/the-blog',

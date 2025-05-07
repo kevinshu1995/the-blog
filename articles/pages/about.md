@@ -8,7 +8,7 @@ aside: false
 <img src="https://i.imgur.com/X18D9Tt.jpeg" alt="my image" />
 
 <div class="space-x-6 mt-4">
-    <a href="https://hsiu.soy" target="_blank" class="inline-flex items-center gap-2">
+    <a href="https://resume.hsiu.soy" target="_blank" class="inline-flex items-center gap-2">
         <BaseIcon icon="mynaui/link-one-solid" class=""/> 個人網站
     </a>
     <a href="https://www.linkedin.com/in/kevin-hws/" target="_blank"  class="inline-flex items-center gap-2">
