@@ -139,6 +139,7 @@ export default defineConfig({
         copyrightFrom: '2025',
     } as any,
     srcExclude: ['README.md'],
+    ignoreDeadLinks: [`/${rssFileName}`],
     vite: {
         plugins: [UnoCSS(), RssPlugin(rssOptions)],
     },
