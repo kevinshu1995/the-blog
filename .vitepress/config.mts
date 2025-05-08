@@ -107,6 +107,8 @@ export default defineConfig({
         socialLinks: [
             { icon: 'gmail', link: 'mailto:kevin.hsu.hws@gmail.com' },
             { icon: 'github', link: 'https://github.com/kevinshu1995' },
+            { icon: 'threads', link: 'https://www.threads.com/@hsiu.soy' },
+            { icon: 'flickr', link: 'https://www.flickr.com/photos/145658287@N06/' },
             { icon: 'rss', link: `/${rssFileName}` },
         ],
         darkModeSwitchLabel: '切換模式',
