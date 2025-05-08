@@ -4,6 +4,7 @@ title: 首頁
 aside: false
 lastUpdated: false
 home: true
+publish: false
 ---
 <script setup>
 import Page from "./../.vitepress/theme/components/page/Page.vue";

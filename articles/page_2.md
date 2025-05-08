@@ -4,6 +4,7 @@ title: 文章列表 - 2
 aside: false
 lastUpdated: false
 home: true
+publish: false
 ---
 <script setup>
 import Page from "./../.vitepress/theme/components/page/Page.vue";
