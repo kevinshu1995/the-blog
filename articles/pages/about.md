@@ -3,6 +3,7 @@ page: true
 title: "Hi \U0001F44B 我是許文修 - 網頁設計師，目前致力於研究前端技術"
 description: 這裡主要寫一些網頁前端相關的文章，主要是為了作為個人的紀錄留存用，「可能」會偶爾寫電影、音樂、遊戲類的文章，反正就是寫好玩的。有任何問題歡迎聯絡我!但我不一定會回 (?
 aside: false
+publish: false
 ---
 
 <img src="https://i.imgur.com/X18D9Tt.jpeg" alt="my image" />

@@ -3,6 +3,7 @@ page: true
 title: Category
 description: Category
 aside: false
+publish: false
 ---
 
 <br/>
