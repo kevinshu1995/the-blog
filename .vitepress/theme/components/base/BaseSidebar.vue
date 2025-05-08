@@ -1,7 +1,7 @@
 <template>
     <div :style="{ width: sidebarWidth }" class="relative" ref="refSidebarContainer">
         <div
-            :class="[mdAndLarger && 'custom-sidebar']"
+            :class="[sideBarClass]"
             :style="{
                 width: sidebarWidth,
                 left: mdAndLarger ? `${sidebarX}px` : 'auto',
@@ -19,8 +19,9 @@ import {
     useWindowScroll,
     breakpointsTailwind,
     useBreakpoints,
+    watchThrottled,
 } from '@vueuse/core';
-import { ref, computed } from 'vue';
+import { ref, computed, nextTick } from 'vue';
 const props = defineProps({
     width: {
         type: [String, Number],
@@ -40,6 +41,16 @@ const sidebarWidth = computed(() => {
 const refSidebarContainer = ref(null);
 const { y: sidebarY, x: sidebarX } = useElementBounding(refSidebarContainer);
 const { y: windowY } = useWindowScroll();
+
+const sideBarClass = ref('');
+watchThrottled(
+    mdAndLarger,
+    async () => {
+        await nextTick();
+        sideBarClass.value = mdAndLarger.value ? 'custom-sidebar' : '';
+    },
+    { throttle: 100, immediate: true },
+);
 </script>
 
 <style scoped>
