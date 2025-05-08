@@ -51,6 +51,13 @@ export default defineConfig({
                 href: '/favicon.jpg',
             },
         ],
+        [
+            'meta',
+            {
+                name: 'google-adsense-account',
+                content: 'ca-pub-4332272244289506',
+            },
+        ],
 
         ['script', { async: '', src: 'https://www.googletagmanager.com/gtag/js?id=G-SN2Z3XCX1H' }],
         [
