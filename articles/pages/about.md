@@ -54,11 +54,11 @@ publish: false
 5. [Medium][medium]: 跟部落格的內容會同步發布，歡迎交流。
 6. [個人履歷][cakeresume]: 個人經歷，請不要看太詳細。
 
-[website]: https://kevinshu1995.github.io/
+[website]: https://resume.hsiu.soy/
 [linkedin]: https://www.linkedin.com/in/%E6%96%87%E4%BF%AE-%E8%A8%B1-7b472a18a/
 [mail]: mailto:kevinshu1995@gmail.com
-[maskmap]: https://kevinshu1995.github.io/maskmap/
-[blog]: https://kevinshu1995.github.io/blog/
+[maskmap]: https://wen-hsiu-hsu.github.io/maskmap/
+[blog]: https://hsiu.soy
 [medium]: https://medium.com/@wenshiuhsu
-[jsdungeon]: https://kevinshu1995.github.io/hex_jsDungeon/index.html
+[jsdungeon]: https://wen-hsiu-hsu.github.io/hex_jsDungeon/index.html
 [cakeresume]: https://www.cakeresume.com/kevinhws

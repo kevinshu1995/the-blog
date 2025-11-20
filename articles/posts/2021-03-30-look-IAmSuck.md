@@ -125,8 +125,8 @@ Git flow 應該可以說是各個團隊都會有一點不同，但功用就是�
 
 ## 最後附上我的個人連結，如下
 
--   [Github @kevinHWS](https://github.com/kevinshu1995)
--   [JS 地下城網站首頁](https://kevinshu1995.github.io/hex_jsDungeon/)
+-   [Github @kevinHWS](https://github.com/wen-hsiu-hsu)
+-   [JS 地下城網站首頁](https://wen-hsiu-hsu.github.io/hex_jsDungeon/)
     -   歡迎來看看 JS 作品
 
 <br>

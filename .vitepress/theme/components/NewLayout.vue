@@ -8,6 +8,7 @@
             <div v-if="!frontmatter.page" class="space-y-20 pt-10">
                 <PostSupports />
                 <div class="space-y-10">
+                    <BaseAdUnit />
                     <PostComment />
                     <PostNextPrevLinks />
                 </div>
@@ -33,6 +34,7 @@ import PostSuggestions from './layout/PostSuggestions.vue';
 import PostMeta from './layout/PostMeta.vue';
 import PostSupports from './layout/PostSupports.vue';
 import NotFoundPage from './page/NotFoundPage.vue';
+import BaseAdUnit from './base/BaseAdUnit.vue';
 import { useRoute, useData } from 'vitepress';
 
 const { Layout } = DefaultTheme;

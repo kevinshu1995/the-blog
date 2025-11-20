@@ -94,7 +94,7 @@ export default defineConfig({
         website: 'https://hsiu.soy', //copyright link
         logo: '/avatar-pixel-2.jpg',
         comment: {
-            repo: 'kevinshu1995/the-blog',
+            repo: 'wen-hsiu-hsu/the-blog',
             issueTerm: 'pathname',
         },
         nav: [{ text: '關於我', link: '/pages/about' }],
@@ -106,7 +106,7 @@ export default defineConfig({
         },
         socialLinks: [
             { icon: 'gmail', link: 'mailto:kevin.hsu.hws@gmail.com' },
-            { icon: 'github', link: 'https://github.com/kevinshu1995' },
+            { icon: 'github', link: 'https://github.com/wen-hsiu-hsu' },
             { icon: 'threads', link: 'https://www.threads.com/@hsiu.soy' },
             { icon: 'flickr', link: 'https://www.flickr.com/photos/145658287@N06/' },
             { icon: 'rss', link: `/${rssFileName}` },
